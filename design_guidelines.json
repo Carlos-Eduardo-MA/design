@@ -1,0 +1,199 @@
+{
+  "project_name": "Editorial Brand Specialist Portfolio & Behance Gallery",
+  "language": "pt-BR",
+  "design_identity": {
+    "persona": "E1 - The Anti-AI Designer",
+    "theme": "Light Minimalist Editorial (Swiss Poster meets Pinterest Masonry)",
+    "discipline_fusion": [
+      "Swiss Grid Typography & High Contrast Layouts",
+      "Pinterest Masonry Visual Discovery",
+      "Editorial Fashion Magazine Scrollytelling & Slow Marquee"
+    ],
+    "archetype": "Swiss & High Contrast + Organic Warmth (Off-white #FBF9F5, Deep Graphite #121212, Muted Sand #EFECE6, Signal Vermilion #E63946)",
+    "target_audience": "High-end clients, creative directors, startups seeking premium brand identity, naming, and strategy."
+  },
+  "design_probabilities": [
+    {
+      "concept": "Swiss Editorial Minimalist (Chosen Strategy)",
+      "probability": 0.45,
+      "reasoning": "High visual contrast, generous whitespace, sharp grid hierarchy, fits luxury brand identity position perfectly."
+    },
+    {
+      "concept": "Pinterest Casual Discovery",
+      "probability": 0.25,
+      "reasoning": "Matches user explicit choice for relaxed Pinterest masonry style visual showcase."
+    },
+    {
+      "concept": "Tactile Fine-Grain Paper & Studio Aesthetic",
+      "probability": 0.15,
+      "reasoning": "Emphasizes craft and physical stationery mockups with subtle grain."
+    },
+    {
+      "concept": "High-Tech Kinetic Grid",
+      "probability": 0.10,
+      "reasoning": "Modern interactive feel for tech startup clients."
+    },
+    {
+      "concept": "Neo-Brutalist Monochrome",
+      "probability": 0.05,
+      "reasoning": "Alternative bold edgy direction."
+    }
+  ],
+  "typography": {
+    "headings": {
+      "family": "'Playfair Display', 'Cormorant Garamond', Georgia, serif",
+      "weights": ["400", "600", "700", "900"],
+      "h1_hero": "text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.08] font-serif font-medium",
+      "h2_section": "text-3xl sm:text-4xl font-serif font-medium tracking-tight",
+      "h3_card": "text-xl sm:text-2xl font-serif font-medium"
+    },
+    "body": {
+      "family": "'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif",
+      "sizes": {
+        "base": "text-base leading-relaxed text-neutral-700",
+        "small": "text-sm text-neutral-500",
+        "mono_label": "font-mono text-xs uppercase tracking-[0.2em] text-neutral-500"
+      }
+    },
+    "font_imports": "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');"
+  },
+  "colors": {
+    "background_base": "#FBF9F5",
+    "background_card": "#FFFFFF",
+    "background_alt": "#F3F0EA",
+    "foreground_primary": "#121212",
+    "foreground_secondary": "#525252",
+    "accent_vermilion": "#E63946",
+    "accent_subtle_border": "rgba(18, 18, 18, 0.08)",
+    "glass_bg": "rgba(251, 249, 245, 0.82)",
+    "whatsapp_green": "#25D366",
+    "behance_blue": "#0057FF"
+  },
+  "visual_enhancers": {
+    "noise_overlay": "Subtle CSS radial noise SVG or fine opacity texture for paper feel",
+    "pinterest_masonry": "3-column responsive layout (1 col mobile, 2 col tablet, 3-4 col desktop) with varying aspect ratios (tall 4:5, square 1:1, wide 16:9)",
+    "hero_reveal": "Framermotion staggered text reveal per line with kinetic movement",
+    "editorial_marquee": "Slow, smooth drifting ribbon with category tags and dot separators",
+    "sticky_nav": "Crystal glassmorphism with backdrop-blur-md, subtle 1px border, logo mark icon",
+    "certificate_badge_tab": "Interactive tabs for Certificates, Specializations, and Industry Recognitions"
+  },
+  "image_urls": {
+    "designer_portrait": {
+      "url": "https://images.unsplash.com/photo-1654512697655-b2899afacae5?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "alt": "Foto de perfil de Marina Duarte, especialista em marcas e branding",
+      "usage": "Seção Sobre a Designer"
+    },
+    "portfolio_project_1": {
+      "url": "https://images.unsplash.com/photo-1713873010288-c4617fc2b15b?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "title": "Aura Botanicals",
+      "category": "Branding & Packaging",
+      "behance_url": "https://behance.net",
+      "description": "Identidade visual minimalista e embalagens sustentáveis para marca premium de cuidados naturais."
+    },
+    "portfolio_project_2": {
+      "url": "https://images.unsplash.com/photo-1636247498840-693054bb4bcc?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "title": "Moisés Castro Arquitetura",
+      "category": "Editorial & Naming",
+      "behance_url": "https://behance.net",
+      "description": "Sistema de identidade editorial e publicação institucional para estúdio de arquitetura contemporânea."
+    },
+    "portfolio_project_3": {
+      "url": "https://images.unsplash.com/photo-1636247499734-893da2bcfc1c?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "title": "Castro Capital",
+      "category": "Estratégia & Identidade",
+      "behance_url": "https://behance.net",
+      "description": "Rebranding estratégico para gestora de investimentos com tipografia autoral e rigor suíço."
+    },
+    "portfolio_project_4": {
+      "url": "https://images.unsplash.com/photo-1636247499180-13285c86be9b?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "title": "Livro de Marca & Diretrizes",
+      "category": "Brand Book",
+      "behance_url": "https://behance.net",
+      "description": "Guia completo de aplicação de marca, tom de voz, paleta cromática e grida tipográfica."
+    },
+    "portfolio_project_5": {
+      "url": "https://images.unsplash.com/photo-1490013616775-3ca8865fb129?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "title": "Monocromo Magazine",
+      "category": "Design Editorial",
+      "behance_url": "https://behance.net",
+      "description": "Direção de arte e projeto gráfico para revista de design e cultura visual."
+    },
+    "portfolio_project_6": {
+      "url": "https://images.unsplash.com/photo-1543441235-e8c913dea2d7?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "title": "Ateliê & Tipografia Custom",
+      "category": "Tipografia",
+      "behance_url": "https://behance.net",
+      "description": "Desenho de marca e lettering exclusivo para ateliê de arte contemporânea."
+    }
+  },
+  "key_features_to_build": [
+    {
+      "name": "Header & Nav",
+      "component": "Navbar.js",
+      "details": "Logo marca autoral (SVG minimalista), links para 'Início', 'Portfólio', 'Sobre', 'Contato', botão CTA 'Fale comigo' e atalho para 'Painel Admin'."
+    },
+    {
+      "name": "Hero Editorial",
+      "component": "HeroSection.js",
+      "details": "Título marcante em Playfair Display: 'Transformo marcas em ecossistemas visuais inesquecíveis.', subtítulo editorial, tags de especialização, estatísticas (10+ anos, 120+ marcas, prêmios) e botão direto para WhatsApp e Portfólio."
+    },
+    {
+      "name": "Marquee Editorial Flow",
+      "component": "EditorialMarquee.js",
+      "details": "Ribbon contínuo e suave com termos como: *BRANDING • IDENTIDADE VISUAL • ESTRATÉGIA DE MARCA • NAMING • EDITORIAL • PACKAGING • POSICIONAMENTO*."
+    },
+    {
+      "name": "Galeria Pinterest Masonry",
+      "component": "PinterestGallery.js",
+      "details": "Layout masonry com colunas flexíveis, busca por palavras-chave, filtros por categoria ('Todos', 'Branding', 'Editorial', 'Packaging', 'Estratégia'), card hover no estilo Pinterest com badge Behance, atalho de curtir/salvar local, e clique para abrir Modal de Projeto."
+    },
+    {
+      "name": "Modal de Detalhes do Projeto",
+      "component": "ProjectModal.js",
+      "details": "Visualização expandida em alta resolução, ano, cliente, desafio de design, galeria complementar e link direto para o Behance original."
+    },
+    {
+      "name": "Seção Sobre & Certificados",
+      "component": "AboutSection.js",
+      "details": "Foto em estúdio da designer (Marina Duarte), biografia envolvente, manifesto de design ('Menos ruído, mais essência'), e abas interativas com Certificados (ex: Pós em Design de Marcas - Belas Artes, Especialização Naming - Domestika, Brand Strategy Masterclass) com datas e instituição."
+    },
+    {
+      "name": "Formulário Fale Comigo",
+      "component": "ContactSection.js",
+      "details": "Formulário limpo com validação de Nome, E-mail, Mensagem, envio simulado com feedback via Toast Sonner e informações diretas de contato (E-mail, Cidade/Estado, Redes)."
+    },
+    {
+      "name": "Botão Flutuante de WhatsApp",
+      "component": "FloatingWhatsApp.js",
+      "details": "Botão fixo no canto inferior direito, mensagem pré-formatada para o WhatsApp: 'Olá! Vim pelo seu site e gostaria de conversar sobre um projeto de branding.'"
+    },
+    {
+      "name": "Painel de Administração da Galeria",
+      "component": "AdminPanelModal.js",
+      "details": "Painel modal/drawer simples para cadastrar novos projetos (Título, Categoria, Imagem URL, Link do Behance, Descrição) e excluir projetos existentes. Dados salvos em `localStorage` com fallback para os 6 projetos iniciais."
+    }
+  ],
+  "accessibility_and_testing": {
+    "data_testid_rules": "Todos os elementos interativos (botões, inputs, cards da galeria, abas de certificados, modais, formulário) DEVEM conter o atributo data-testid em formato kebab-case.",
+    "examples": [
+      "data-testid='nav-link-portfolio'",
+      "data-testid='hero-cta-whatsapp'",
+      "data-testid='portfolio-filter-all'",
+      "data-testid='project-card-1'",
+      "data-testid='project-behance-link'",
+      "data-testid='about-tab-certificates'",
+      "data-testid='contact-submit-btn'",
+      "data-testid='admin-open-btn'",
+      "data-testid='whatsapp-floating-btn'"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Instale dependências recomendadas se necessário: react-fast-marquee, @phosphor-icons/react ou lucide-react (já disponível).",
+    "Carregue as fontes 'Playfair Display' e 'Plus Jakarta Sans' no index.html ou index.css.",
+    "Certifique-se que todo o código React está em arquivos .js ou .jsx dentro de src/.",
+    "Mantenha o tom editorial minimalista claro (#FBF9F5, texto #121212) sem degradês pesados.",
+    "Implemente o estado do portfólio de modo que projetos adicionados no Painel Admin fiquem persisitidos no localStorage.",
+    "Garanta responsividade total para telas de celular, tablet e desktop.",
+    "Todos os textos devem estar em Português (pt-BR)."
+  ]
+}
