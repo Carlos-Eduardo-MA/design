@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { Search, Heart, ExternalLink } from "lucide-react";
+import { Search, Heart, ArrowUpRight } from "lucide-react";
 import { API } from "@/config";
-import { ProjectModal } from "@/components/ProjectModal";
 
 const RATIO_CLASS = {
   tall: "aspect-[4/5]",
@@ -12,11 +12,11 @@ const RATIO_CLASS = {
 };
 
 export const PinterestGallery = () => {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("Todos");
   const [query, setQuery] = useState("");
-  const [selected, setSelected] = useState(null);
   const [saved, setSaved] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem("duarte_saved") || "[]");
@@ -74,7 +74,7 @@ export const PinterestGallery = () => {
         >
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500 mb-4 flex items-center gap-3">
-              <span className="w-8 h-px bg-[#E63946]" /> Portfólio · Behance
+              <span className="w-8 h-px bg-[#E63946]" /> Portfólio
             </p>
             <h2 className="font-serif font-medium tracking-tight text-4xl sm:text-5xl">
               Trabalhos que contam
@@ -144,7 +144,7 @@ export const PinterestGallery = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.6, delay: (i % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                onClick={() => setSelected(p)}
+                onClick={() => navigate(`/projeto/${p.id}`)}
                 data-testid={`project-card-${i + 1}`}
                 className="mb-5 break-inside-avoid group cursor-pointer"
               >
@@ -172,11 +172,16 @@ export const PinterestGallery = () => {
                   >
                     <Heart size={15} fill={saved.includes(p.id) ? "currentColor" : "none"} />
                   </button>
-                  <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                    <p className="font-serif text-xl text-white">{p.title}</p>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70 mt-1">
-                      {p.category} {p.year && `· ${p.year}`}
-                    </p>
+                  <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-between gap-3">
+                    <div>
+                      <p className="font-serif text-xl text-white">{p.title}</p>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70 mt-1">
+                        {p.category} {p.year && `· ${p.year}`}
+                      </p>
+                    </div>
+                    <span className="shrink-0 w-9 h-9 rounded-full bg-white text-[#121212] flex items-center justify-center">
+                      <ArrowUpRight size={15} />
+                    </span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between px-1 pt-3">
@@ -184,24 +189,15 @@ export const PinterestGallery = () => {
                     <h3 className="font-serif text-lg leading-tight">{p.title}</h3>
                     <p className="text-xs text-neutral-500 mt-0.5">{p.category}</p>
                   </div>
-                  <a
-                    href={p.behance_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    data-testid={`project-behance-link-${i + 1}`}
-                    className="shrink-0 font-mono text-[10px] uppercase tracking-[0.15em] text-[#0057FF] border border-[#0057FF]/30 rounded-full px-3 py-1.5 hover:bg-[#0057FF] hover:text-white transition-colors duration-300 flex items-center gap-1.5"
-                  >
-                    Bē <ExternalLink size={10} />
-                  </a>
+                  <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.15em] text-neutral-400 group-hover:text-[#121212] transition-colors flex items-center gap-1">
+                    Ver <ArrowUpRight size={11} />
+                  </span>
                 </div>
               </motion.article>
             ))}
           </div>
         )}
       </div>
-
-      <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </section>
   );
 };

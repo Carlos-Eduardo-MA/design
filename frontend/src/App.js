@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import "@/App.css";
 import Home from "@/pages/Home";
 import Admin from "@/pages/Admin";
+import ProjectPage from "@/pages/ProjectPage";
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/projeto/:id" element={<ProjectPage />} />
           <Route path="/admin" element={<Admin />} />
         </Routes>
       </BrowserRouter>

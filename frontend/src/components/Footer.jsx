@@ -1,5 +1,4 @@
 import { Logo } from "@/components/Logo";
-import { BEHANCE_PROFILE } from "@/config";
 import { Instagram, Linkedin } from "lucide-react";
 
 export const Footer = () => (
@@ -24,16 +23,6 @@ export const Footer = () => (
           <a href="#contato" data-testid="footer-link-contato" className="font-mono text-xs uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors">Contato</a>
         </nav>
         <div className="flex gap-3">
-          <a
-            href={BEHANCE_PROFILE}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-testid="footer-social-behance"
-            aria-label="Behance"
-            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center font-serif font-bold hover:bg-[#0057FF] hover:border-[#0057FF] transition-colors"
-          >
-            Bē
-          </a>
           <a
             href="https://instagram.com"
             target="_blank"

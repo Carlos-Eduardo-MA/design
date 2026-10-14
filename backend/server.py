@@ -164,6 +164,17 @@ async def list_projects():
     return [Project.from_mongo(d) for d in docs]
 
 
+@api_router.get("/projects/{project_id}", response_model=Project)
+async def get_project(project_id: str):
+    try:
+        doc = await db.projects.find_one({"_id": ObjectId(project_id)})
+    except Exception:
+        doc = None
+    if not doc:
+        raise HTTPException(status_code=404, detail="Projeto não encontrado")
+    return Project.from_mongo(doc)
+
+
 @api_router.post("/projects", response_model=Project, status_code=201)
 async def create_project(data: ProjectCreate, user: dict = Depends(get_current_user)):
     project = Project(**data.model_dump())

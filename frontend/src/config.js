@@ -6,6 +6,4 @@ export const WHATSAPP_URL =
     "Olá! Vim pelo seu site e gostaria de conversar sobre um projeto de branding."
   );
 
-export const BEHANCE_PROFILE = "https://behance.net";
-
 export const ADMIN_TOKEN_KEY = "duarte_admin_token";

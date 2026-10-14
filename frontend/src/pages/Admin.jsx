@@ -10,7 +10,6 @@ const emptyForm = {
   title: "",
   category: "",
   image_url: "",
-  behance_url: "https://behance.net",
   description: "",
   year: "",
   client: "",
@@ -210,14 +209,6 @@ export default function Admin() {
               value={form.image_url}
               onChange={(e) => setForm({ ...form, image_url: e.target.value })}
               data-testid="admin-input-image"
-              className={field}
-            />
-            <input
-              type="url"
-              placeholder="Link do projeto no Behance"
-              value={form.behance_url}
-              onChange={(e) => setForm({ ...form, behance_url: e.target.value })}
-              data-testid="admin-input-behance"
               className={field}
             />
             <textarea

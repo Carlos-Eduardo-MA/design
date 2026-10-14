@@ -24,13 +24,15 @@ Decisões da usuária:
 ## Implementado (14/10/2026)
 - Hero editorial com reveal cinético linha a linha, parallax do asterisco, stats
 - Marquee editorial lento (CSS animation)
-- Galeria masonry estilo Pinterest: busca, filtros por categoria, hover overlay, salvar (localStorage), modal de projeto com link Behance
+- Galeria masonry estilo Pinterest: busca, filtros por categoria, hover overlay, salvar (localStorage)
+- Página dedicada de projeto `/projeto/:id`: detalhes completos (categoria, cliente, ano, entrega, imagem em destaque, descrição), CTA WhatsApp, navegação anterior/próximo
 - Seção Sobre: foto, bio, manifesto, abas Certificados/Especializações/Prêmios (conteúdo MOCK)
 - Formulário Fale Comigo → salva no MongoDB, toast de sucesso
 - Botão flutuante WhatsApp (número EXEMPLO +55 11 99999-9999, mensagem pré-formatada)
-- Painel /admin com login JWT: cadastrar projeto (título, categoria, imagem URL, Behance, descrição, ano, cliente, formato), excluir projetos, ver mensagens
+- Painel /admin com login JWT: cadastrar projeto (título, categoria, imagem URL, descrição, ano, cliente, formato), excluir projetos, ver mensagens
 - Logo SVG autoral + favicon, paleta off-white/grafite/vermello, Playfair Display + Plus Jakarta Sans + JetBrains Mono
 - Seed: 6 projetos de exemplo (só quando coleção vazia)
+- Behance removido por decisão da usuária (API descontinuada): sem botões/links, cadastro 100% pelo painel
 
 ## Credenciais
 - Admin: admin@duarte.studio / duarte123 (ver /app/memory/test_credentials.md)
@@ -42,7 +44,7 @@ Decisões da usuária:
 - P1: Editar projeto existente no admin (backend PUT já existe; falta UI)
 - P1: Edição do Sobre/certificados pelo admin (hoje é estático no código)
 - P2: Notificação por e-mail quando chegar mensagem (Resend)
-- P2: Página individual de projeto (/projeto/:id)
+- P2: Galeria de múltiplas imagens na página do projeto
 - P2: SEO avançado (OG image, sitemap)
 
 ## Próximas tarefas

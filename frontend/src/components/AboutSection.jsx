@@ -25,7 +25,7 @@ const SPECIALIZATIONS = [
 
 const AWARDS = [
   { title: "Seleção — Identidade do Ano", org: "Bienal de Design Gráfico", year: "2023" },
-  { title: "Featured em Branding", org: "Behance", year: "2024" },
+  { title: "Destaque em Branding", org: "Design Week Awards", year: "2024" },
   { title: "Top 10 Estúdios Independentes", org: "Clube de Criação", year: "2025" },
 ];
 

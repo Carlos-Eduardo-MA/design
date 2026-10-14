@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { toast } from "sonner";
 import { Mail, MapPin, Send, Loader2 } from "lucide-react";
-import { API, BEHANCE_PROFILE } from "@/config";
+import { API } from "@/config";
 
 export const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -65,18 +65,12 @@ export const ContactSection = () => {
                 </span>
                 São Paulo · atende o Brasil inteiro
               </p>
-              <a
-                href={BEHANCE_PROFILE}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="contact-behance-link"
-                className="flex items-center gap-3 text-sm text-neutral-700 hover:text-[#0057FF] transition-colors"
-              >
+              <p className="flex items-center gap-3 text-sm text-neutral-700">
                 <span className="w-10 h-10 rounded-full bg-[#F3F0EA] flex items-center justify-center font-serif font-bold">
-                  Bē
+                  D
                 </span>
-                Portfólio completo no Behance
-              </a>
+                Segunda a sexta, 9h às 18h
+              </p>
             </div>
           </motion.div>
 
