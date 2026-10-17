@@ -22,7 +22,11 @@ export const EditorialMarquee = () => {
           >
             {t}
           </span>
-          <span className="w-2 h-2 rounded-full bg-[#121212]" aria-hidden="true" />
+          <span
+            className="w-2 h-2 rounded-full"
+            style={{ backgroundColor: ["#FF4A1F", "#C9B8FF", "#FFC61A", "#7FB5FF"][i % 4] }}
+            aria-hidden="true"
+          />
         </span>
       ))}
     </div>

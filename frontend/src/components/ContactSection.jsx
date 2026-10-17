@@ -42,7 +42,7 @@ export const ContactSection = () => {
             <h2 className="font-serif font-medium tracking-tight text-4xl sm:text-6xl mb-6">
               Tem uma marca
               <br />
-              pra <em className="text-[#121212]">nascer?</em>
+              pra <em className="bg-[#7FB5FF] px-2 rounded-lg inline-block -rotate-1">nascer?</em>
             </h2>
             <p className="text-neutral-600 leading-relaxed max-w-md mb-10">
               Me conta a ideia — pode ser rabiscada mesmo. Eu retorno com um

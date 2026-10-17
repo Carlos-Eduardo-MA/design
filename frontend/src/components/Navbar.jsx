@@ -37,7 +37,7 @@ export const Navbar = () => {
         <a href="#inicio" className="flex items-center gap-3" data-testid="nav-logo">
           <Logo size={34} />
           <span className="font-serif text-xl tracking-tight">
-            bia assis<span className="text-[#121212]">®</span>
+            bia assis<span className="text-[#FF4A1F]">®</span>
           </span>
         </a>
 

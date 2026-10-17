@@ -82,7 +82,7 @@ export default function ProjectPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="font-mono text-xs uppercase tracking-[0.25em] text-[#121212] mb-5 flex items-center gap-3"
+              className="font-mono text-xs uppercase tracking-[0.25em] text-[#FF4A1F] mb-5 flex items-center gap-3"
               data-testid="project-category"
             >
               <span className="w-8 h-px bg-[#121212]" /> {project.category}

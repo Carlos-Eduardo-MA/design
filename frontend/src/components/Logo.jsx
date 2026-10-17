@@ -19,6 +19,6 @@ export const Logo = ({ size = 34, dark = true }) => (
     >
       B
     </text>
-    <circle cx="49" cy="17" r="5" fill="#A3A3A3" />
+    <circle cx="49" cy="17" r="5" fill="#FF4A1F" />
   </svg>
 );

@@ -79,7 +79,7 @@ export const PinterestGallery = () => {
             <h2 className="font-serif font-medium tracking-tight text-4xl sm:text-5xl">
               Trabalhos que contam
               <br />
-              <em className="text-[#121212]">histórias de marca</em>
+              <em className="bg-[#C9B8FF] px-2 rounded-lg inline-block -rotate-1">histórias de marca</em>
             </h2>
           </div>
           <div className="relative w-full md:w-72">
@@ -166,7 +166,7 @@ export const PinterestGallery = () => {
                     aria-label="Salvar projeto"
                     className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center backdrop-blur-md transition-all duration-300 ${
                       saved.includes(p.id)
-                        ? "bg-[#121212] text-white opacity-100"
+                        ? "bg-[#FF4A1F] text-white opacity-100"
                         : "bg-white/70 text-[#121212] opacity-0 group-hover:opacity-100"
                     }`}
                   >

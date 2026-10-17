@@ -48,7 +48,7 @@ export const AboutSection = () => (
           className="relative"
         >
           <div className="absolute -top-4 -left-4 w-full h-full rounded-3xl border border-[#121212]/15" aria-hidden="true" />
-          <div className="absolute -bottom-5 -right-5 w-24 h-24 bg-[#121212] rounded-2xl -z-0" aria-hidden="true" />
+          <div className="absolute -bottom-5 -right-5 w-24 h-24 bg-[#FFC61A] rounded-2xl -z-0" aria-hidden="true" />
           <img
             src={PORTRAIT}
             alt="Foto de Ana Beatriz Assis, designer especialista em marcas e branding"
@@ -75,7 +75,7 @@ export const AboutSection = () => (
           <h2 className="font-serif font-medium tracking-tight text-4xl sm:text-5xl mb-6">
             Menos ruído,
             <br />
-            <em className="text-[#121212]">mais essência.</em>
+            <em className="bg-[#FFC61A] px-2 rounded-lg inline-block -rotate-1">mais essência.</em>
           </h2>
           <p className="text-neutral-600 leading-relaxed mb-4">
             Sou a Bia — Ana Beatriz Assis — brand designer e diretora de arte

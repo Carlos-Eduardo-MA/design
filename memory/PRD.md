@@ -41,10 +41,11 @@ Decisões da usuária:
 - Admin: admin@duarte.studio / duarte123 (ver /app/memory/test_credentials.md)
 
 ## Identidade visual (ajustes 17/10/2026)
-- Paleta estrita preto/cinza/branco (vermelho #E63946 removido de todo o site; WhatsApp mantém verde da marca)
-- Hero: selo giratório "BIA ASSIS • BRANDING • DESIGN COM ALMA" com carinha (substituiu o asterisco com parallax), sublinhado rabiscado animado em "com alma,"
+- Paleta base preto/cinza/branco + acentos vibrantes autorizados pela usuária: vermelho-laranja #FF4A1F, lavanda #C9B8FF, amarelo #FFC61A, azul #7FB5FF
+- Hero estilo colagem criativa (referências enviadas): foto 2 da Bia (camisa branca) em arco P&B com borda branca, flor vermelha girando, blob lavanda, pílulas flutuantes (branding/identidade visual/naming/direção de arte), sparkles, highlight amarelo em "com alma,"
 - Fix: descendentes do hero não são mais cortadas (padding nas máscaras de linha)
-- Marquee com texto alternando sólido/vazado (outline)
+- Marquee com texto alternando sólido/vazado e pontinhos coloridos
+- Highlights coloridos nos títulos das seções (lavanda no portfólio, amarelo no sobre, azul no contato)
 - Rodapé: linha única "© 2026 Bia Assis® · Brand Designer · Resende, RJ"
 
 ## Pendências conhecidas / backlog

@@ -2,163 +2,230 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { WHATSAPP_URL } from "@/config";
 
-const LINES = [
-  { text: "Design de marcas", italic: false },
-  { text: "com alma,", italic: true, squiggle: true },
-  { text: "não só com logo.", italic: false },
-];
-
 const STATS = [
   { value: "9+", label: "anos de experiência" },
   { value: "Branding", label: "especialização · Agência Ana Couto" },
   { value: "∞", label: "ideias com propósito" },
 ];
 
-const SpinningBadge = () => (
+const PILLS = [
+  { text: "branding", bg: "#C9B8FF", color: "#121212", pos: { top: "4%", left: "-6%" }, delay: 0, testid: "hero-pill-branding" },
+  { text: "identidade visual", bg: "#FBF9F5", color: "#121212", border: true, pos: { top: "26%", right: "-8%" }, delay: 0.9, testid: "hero-pill-identidade" },
+  { text: "naming", bg: "#FFC61A", color: "#121212", pos: { bottom: "24%", left: "-10%" }, delay: 1.8, testid: "hero-pill-naming" },
+  { text: "direção de arte", bg: "#121212", color: "#FBF9F5", pos: { bottom: "2%", right: "0%" }, delay: 2.7, testid: "hero-pill-direcao" },
+];
+
+const Flower = ({ className }) => (
+  <svg viewBox="0 0 200 200" className={className} aria-hidden="true" data-testid="hero-flower">
+    <g fill="#FF4A1F">
+      {[0, 60, 120, 180, 240, 300].map((deg) => (
+        <ellipse key={deg} cx="100" cy="50" rx="30" ry="50" transform={`rotate(${deg} 100 100)`} />
+      ))}
+    </g>
+    <circle cx="100" cy="100" r="26" fill="#FFC61A" />
+  </svg>
+);
+
+const Sparkle = ({ className, fill }) => (
+  <svg viewBox="0 0 100 100" className={className} fill={fill} aria-hidden="true">
+    <path d="M50 0 C56 34, 66 44, 100 50 C66 56, 56 66, 50 100 C44 66, 34 56, 0 50 C34 44, 44 34, 50 0 Z" />
+  </svg>
+);
+
+const HeroCollage = () => (
   <motion.div
-    initial={{ opacity: 0, scale: 0.6 }}
-    animate={{ opacity: 1, scale: 1, y: [0, -14, 0] }}
-    transition={{
-      opacity: { delay: 1.5, duration: 0.6 },
-      scale: { delay: 1.5, type: "spring", stiffness: 200, damping: 14 },
-      y: { delay: 2, duration: 6, repeat: Infinity, ease: "easeInOut" },
-    }}
-    className="pointer-events-none absolute right-4 sm:right-16 top-28 sm:top-36 w-28 h-28 sm:w-44 sm:h-44"
-    aria-hidden="true"
-    data-testid="hero-badge"
+    initial={{ opacity: 0, scale: 0.92, y: 30 }}
+    animate={{ opacity: 1, scale: 1, y: 0 }}
+    transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+    className="relative mx-auto w-full max-w-[340px] sm:max-w-[420px] h-[440px] sm:h-[540px]"
+    data-testid="hero-collage"
   >
-    <svg viewBox="0 0 200 200" className="w-full h-full animate-spin-slow">
-      <defs>
-        <path
-          id="badge-circle"
-          d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"
-          fill="none"
-        />
-      </defs>
-      <text fontSize="13" letterSpacing="4" fill="#121212" fontFamily="'JetBrains Mono', monospace">
-        <textPath href="#badge-circle">BIA ASSIS • BRANDING • DESIGN COM ALMA •</textPath>
-      </text>
-    </svg>
-    <svg viewBox="0 0 100 100" className="absolute inset-0 m-auto w-14 h-14 sm:w-20 sm:h-20">
-      <circle cx="50" cy="50" r="47" fill="#121212" />
-      <circle cx="36" cy="41" r="5" fill="#FBF9F5" />
-      <circle cx="64" cy="41" r="5" fill="#FBF9F5" />
-      <path d="M31 59 Q50 76 69 59" stroke="#FBF9F5" strokeWidth="5" fill="none" strokeLinecap="round" />
-    </svg>
+    <motion.div
+      animate={{ rotate: 360 }}
+      transition={{ duration: 70, repeat: Infinity, ease: "linear" }}
+      className="absolute -top-10 -right-4 sm:-right-8 w-40 sm:w-56"
+    >
+      <Flower className="w-full h-full" />
+    </motion.div>
+
+    <motion.div
+      animate={{ scale: [1, 1.07, 1], rotate: [0, 4, 0] }}
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute bottom-8 -left-8 sm:-left-12 w-48 h-48 sm:w-60 sm:h-60 bg-[#C9B8FF]"
+      style={{ borderRadius: "62% 38% 55% 45% / 48% 52% 48% 52%" }}
+      aria-hidden="true"
+    />
+
+    <div
+      className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[240px] sm:w-[300px] aspect-[3/4] rounded-t-full rounded-b-[2rem] overflow-hidden border-[6px] border-white shadow-[0_24px_60px_rgba(18,18,18,0.18)] bg-[#EFECE6]"
+      data-testid="hero-photo-frame"
+    >
+      <img
+        src="/images/ana-blazer.jpg"
+        alt="Ana Beatriz Assis, brand designer"
+        data-testid="hero-photo"
+        className="w-full h-full object-cover grayscale"
+      />
+    </div>
+
+    {PILLS.map((pill, i) => (
+      <motion.span
+        key={pill.text}
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: [0, -10, 0] }}
+        transition={{
+          opacity: { delay: 1 + i * 0.15, duration: 0.5 },
+          y: { delay: 1.5, duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: pill.delay },
+        }}
+        className={`absolute font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] px-4 py-2 rounded-full shadow-[0_8px_20px_rgba(18,18,18,0.12)] ${pill.border ? "border border-[#121212]/15" : ""}`}
+        style={{ backgroundColor: pill.bg, color: pill.color, ...pill.pos }}
+        data-testid={pill.testid}
+      >
+        {pill.text}
+      </motion.span>
+    ))}
+
+    <motion.div
+      animate={{ rotate: [0, 18, 0], scale: [1, 1.15, 1] }}
+      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute top-0 left-2"
+    >
+      <Sparkle className="w-8 sm:w-10" fill="#C9B8FF" />
+    </motion.div>
+    <motion.div
+      animate={{ rotate: [0, -15, 0], scale: [1, 1.2, 1] }}
+      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      className="absolute bottom-16 -right-2 sm:right-0"
+    >
+      <Sparkle className="w-6 sm:w-8" fill="#FF4A1F" />
+    </motion.div>
+    <motion.div
+      animate={{ scale: [1, 1.25, 1] }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      className="absolute top-[42%] -left-6"
+    >
+      <Sparkle className="w-5" fill="#FFC61A" />
+    </motion.div>
   </motion.div>
 );
 
 export const HeroSection = () => (
   <section
     id="inicio"
-    className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-24 pb-16"
+    className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-20"
     data-testid="hero-section"
   >
-    <SpinningBadge />
+    <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full grid lg:grid-cols-2 gap-14 lg:gap-8 items-center">
+      <div>
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500 mb-8 flex items-center gap-3"
+          data-testid="hero-eyebrow"
+        >
+          <span className="w-8 h-px bg-[#FF4A1F]" />
+          Ana Beatriz Assis — Especialista em marcas
+        </motion.p>
 
-    <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full">
-      <motion.p
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-        className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500 mb-8 flex items-center gap-3"
-        data-testid="hero-eyebrow"
-      >
-        <span className="w-8 h-px bg-[#121212]" />
-        Ana Beatriz Assis — Especialista em marcas
-      </motion.p>
-
-      <h1 className="font-serif font-medium tracking-tight leading-[1.12] text-[#121212] text-5xl sm:text-7xl lg:text-8xl">
-        {LINES.map((line, i) => (
-          <span key={i} className="block overflow-hidden pb-3 -mb-2">
+        <h1 className="font-serif font-medium tracking-tight leading-[1.12] text-[#121212] text-5xl sm:text-6xl lg:text-7xl">
+          <span className="block overflow-hidden pb-3 -mb-2">
             <motion.span
               className="block"
               initial={{ y: "110%" }}
               animate={{ y: 0 }}
-              transition={{ delay: 0.35 + i * 0.15, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              data-testid={`hero-line-${i + 1}`}
+              transition={{ delay: 0.35, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              data-testid="hero-line-1"
             >
-              {line.squiggle ? (
-                <span className="relative inline-block italic">
-                  {line.text}
-                  <svg
-                    viewBox="0 0 220 14"
-                    className="absolute left-0 -bottom-0.5 sm:-bottom-1 w-full"
-                    fill="none"
-                    aria-hidden="true"
-                    data-testid="hero-squiggle"
-                  >
-                    <motion.path
-                      d="M3 9 C 40 2, 82 13, 120 8 S 192 3, 217 8"
-                      stroke="#121212"
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ delay: 1.25, duration: 0.9, ease: "easeOut" }}
-                    />
-                  </svg>
-                </span>
-              ) : (
-                line.text
-              )}
+              Design de marcas
             </motion.span>
           </span>
-        ))}
-      </h1>
+          <span className="block overflow-hidden pb-3 -mb-2">
+            <motion.span
+              className="block"
+              initial={{ y: "110%" }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              data-testid="hero-line-2"
+            >
+              <span className="relative inline-block italic">
+                <span
+                  className="absolute inset-x-[-8px] top-[6%] bottom-[2%] bg-[#FFC61A] -rotate-1 rounded-lg"
+                  aria-hidden="true"
+                  data-testid="hero-highlight"
+                />
+                <span className="relative">com alma,</span>
+              </span>
+            </motion.span>
+          </span>
+          <span className="block overflow-hidden pb-3 -mb-2">
+            <motion.span
+              className="block"
+              initial={{ y: "110%" }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.65, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              data-testid="hero-line-3"
+            >
+              não só com logo.
+            </motion.span>
+          </span>
+        </h1>
 
-      <motion.p
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.0, duration: 0.7 }}
-        className="mt-12 max-w-xl text-base sm:text-lg leading-relaxed text-neutral-600"
-        data-testid="hero-subtitle"
-      >
-        Branding, identidade visual, naming e editorial para negócios que
-        querem ser lembrados — não apenas vistos. Menos ruído, mais essência.
-      </motion.p>
-
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.15, duration: 0.7 }}
-        className="mt-10 flex flex-wrap items-center gap-4"
-      >
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-testid="hero-cta-whatsapp"
-          className="group bg-[#121212] text-[#FBF9F5] px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.2em] border border-[#121212] hover:bg-transparent hover:text-[#121212] transition-colors duration-300 flex items-center gap-3"
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0, duration: 0.7 }}
+          className="mt-12 max-w-xl text-base sm:text-lg leading-relaxed text-neutral-600"
+          data-testid="hero-subtitle"
         >
-          Chamar no WhatsApp
-          <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] group-hover:scale-150 transition-transform" />
-        </a>
-        <a
-          href="#portfolio"
-          data-testid="hero-cta-portfolio"
-          className="px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.2em] border border-[#121212]/20 hover:border-[#121212] hover:bg-[#121212] hover:text-[#FBF9F5] transition-colors duration-300"
-        >
-          Ver portfólio
-        </a>
-      </motion.div>
+          Branding, identidade visual, naming e editorial para negócios que
+          querem ser lembrados — não apenas vistos. Menos ruído, mais essência.
+        </motion.p>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.8 }}
-        className="mt-16 sm:mt-20 grid grid-cols-3 max-w-lg gap-6 border-t border-[rgba(18,18,18,0.1)] pt-6"
-        data-testid="hero-stats"
-      >
-        {STATS.map((s) => (
-          <div key={s.label}>
-            <p className="font-serif text-3xl sm:text-4xl">{s.value}</p>
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500 mt-1">
-              {s.label}
-            </p>
-          </div>
-        ))}
-      </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.15, duration: 0.7 }}
+          className="mt-10 flex flex-wrap items-center gap-4"
+        >
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="hero-cta-whatsapp"
+            className="group bg-[#121212] text-[#FBF9F5] px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.2em] border border-[#121212] hover:bg-transparent hover:text-[#121212] transition-colors duration-300 flex items-center gap-3"
+          >
+            Chamar no WhatsApp
+            <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] group-hover:scale-150 transition-transform" />
+          </a>
+          <a
+            href="#portfolio"
+            data-testid="hero-cta-portfolio"
+            className="px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.2em] border border-[#121212]/20 hover:border-[#121212] hover:bg-[#121212] hover:text-[#FBF9F5] transition-colors duration-300"
+          >
+            Ver portfólio
+          </a>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4, duration: 0.8 }}
+          className="mt-14 grid grid-cols-3 max-w-lg gap-6 border-t border-[rgba(18,18,18,0.1)] pt-6"
+          data-testid="hero-stats"
+        >
+          {STATS.map((s) => (
+            <div key={s.label}>
+              <p className="font-serif text-3xl sm:text-4xl">{s.value}</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500 mt-1">
+                {s.label}
+              </p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      <HeroCollage />
     </div>
 
     <motion.a
@@ -166,7 +233,7 @@ export const HeroSection = () => (
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 1.8 }}
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 text-neutral-400 hover:text-neutral-900 transition-colors"
+      className="absolute bottom-6 left-1/2 -translate-x-1/2 text-neutral-400 hover:text-neutral-900 transition-colors"
       data-testid="hero-scroll-hint"
       aria-label="Rolar para o portfólio"
     >

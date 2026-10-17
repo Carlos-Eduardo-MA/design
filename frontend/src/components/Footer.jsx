@@ -9,7 +9,7 @@ export const Footer = () => (
           <div className="flex items-center gap-3 mb-4">
             <Logo size={40} dark={false} />
             <span className="font-serif text-2xl">
-              bia assis<span className="text-neutral-400">®</span>
+              bia assis<span className="text-[#FF4A1F]">®</span>
             </span>
           </div>
           <p className="text-white/50 text-sm max-w-xs leading-relaxed">
