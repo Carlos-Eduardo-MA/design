@@ -10,7 +10,7 @@ const LINES = [
 ];
 
 const STATS = [
-  { value: "10+", label: "anos de design" },
+  { value: "9+", label: "anos de experiência" },
   { value: "Branding", label: "especialização · Agência Ana Couto" },
   { value: "RJ", label: "de Resende para o Brasil" },
 ];

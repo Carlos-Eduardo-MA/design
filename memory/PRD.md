@@ -43,6 +43,7 @@ Decisões da usuária:
 ## Pendências conhecidas / backlog
 - P0: ~~Trocar número de WhatsApp~~ FEITO (número real +55 24 99999-8186)
 - P0: ~~Substituir conteúdo mock~~ FEITO (dados reais da Ana Beatriz importados do Behance + fotos enviadas)
+- P0: ~~LinkedIn~~ FEITO (experiências reais adicionadas: VCRP, Mediccont, Myne Agency, Nós; bio atualizada com direção de arte digital/impressa e 9+ anos)
 - P1: Adicionar mais projetos reais pelo /admin (o Behance público só tem 1 projeto)
 - P1: Upload de imagem no admin (hoje é URL) — via object storage
 - P1: Editar projeto existente no admin (backend PUT já existe; falta UI)
