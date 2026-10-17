@@ -32,17 +32,21 @@ Decisões da usuária:
 - Painel /admin com login JWT: cadastrar projeto (título, categoria, imagem URL, descrição, ano, cliente, formato), excluir projetos, ver mensagens
 - Logo SVG autoral + favicon, paleta off-white/grafite/vermello, Playfair Display + Plus Jakarta Sans + JetBrains Mono
 - Seed: 6 projetos de exemplo (só quando coleção vazia)
-- Behance removido por decisão da usuária (API descontinuada): sem botões/links, cadastro 100% pelo painel
+- Marca real: "bia assis®" — Ana Beatriz Assis, brand designer, Resende - RJ (WhatsApp +55 24 99999-8186, abiadesigner@gmail.com)
+- Conteúdo real importado do Behance (perfil abiassis_): bio, formação (Design + especialização em Branding pela Ana Couto), ferramentas (Illustrator, Photoshop, Creative Cloud), redes (IG @abiassis_, LinkedIn ana-beatriz-assis)
+- Projeto real "Rebranding — Colégio ICT" substituiu os 6 mocks (imagens salvas localmente em /public/images)
+- Fotos reais da Ana enviadas pela usuária em /public/images (ana-retrato.jpg no Sobre)
 
 ## Credenciais
 - Admin: admin@duarte.studio / duarte123 (ver /app/memory/test_credentials.md)
 
 ## Pendências conhecidas / backlog
-- P0: Trocar número de WhatsApp pelo real (src/config.js)
-- P0: Substituir conteúdo mock: foto da designer, bio, certificados, e-mail, links sociais (Behance/Instagram/LinkedIn), projetos reais com links reais do Behance
+- P0: ~~Trocar número de WhatsApp~~ FEITO (número real +55 24 99999-8186)
+- P0: ~~Substituir conteúdo mock~~ FEITO (dados reais da Ana Beatriz importados do Behance + fotos enviadas)
+- P1: Adicionar mais projetos reais pelo /admin (o Behance público só tem 1 projeto)
 - P1: Upload de imagem no admin (hoje é URL) — via object storage
 - P1: Editar projeto existente no admin (backend PUT já existe; falta UI)
-- P1: Edição do Sobre/certificados pelo admin (hoje é estático no código)
+- P1: Edição do Sobre/formação pelo admin (hoje é estático no código)
 - P2: Notificação por e-mail quando chegar mensagem (Resend)
 - P2: Galeria de múltiplas imagens na página do projeto
 - P2: SEO avançado (OG image, sitemap)

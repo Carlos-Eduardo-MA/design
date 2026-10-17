@@ -109,7 +109,7 @@ export default function Admin() {
           <div className="flex flex-col items-center mb-8">
             <Logo size={48} />
             <h1 className="font-serif text-3xl mt-4">Painel da galeria</h1>
-            <p className="text-sm text-neutral-500 mt-1">Acesso restrito à Marina</p>
+            <p className="text-sm text-neutral-500 mt-1">Acesso restrito à Bia</p>
           </div>
           <form onSubmit={handleLogin} className="bg-[#F3F0EA] rounded-3xl p-8 space-y-4" data-testid="admin-login-form">
             <input

@@ -9,11 +9,11 @@ export const Footer = () => (
           <div className="flex items-center gap-3 mb-4">
             <Logo size={40} dark={false} />
             <span className="font-serif text-2xl">
-              duarte<span className="text-[#E63946]">®</span>
+              bia assis<span className="text-[#E63946]">®</span>
             </span>
           </div>
           <p className="text-white/50 text-sm max-w-xs leading-relaxed">
-            Estúdio independente de design de marcas. Menos ruído, mais essência.
+            Designer especializada em branding e identidades visuais. Menos ruído, mais essência.
           </p>
         </div>
         <nav className="flex flex-wrap gap-x-8 gap-y-3">
@@ -24,7 +24,7 @@ export const Footer = () => (
         </nav>
         <div className="flex gap-3">
           <a
-            href="https://instagram.com"
+            href="https://instagram.com/abiassis_"
             target="_blank"
             rel="noopener noreferrer"
             data-testid="footer-social-instagram"
@@ -34,7 +34,7 @@ export const Footer = () => (
             <Instagram size={16} />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/ana-beatriz-assis"
             target="_blank"
             rel="noopener noreferrer"
             data-testid="footer-social-linkedin"
@@ -46,8 +46,8 @@ export const Footer = () => (
         </div>
       </div>
       <div className="pt-8 flex flex-col sm:flex-row justify-between gap-3 text-white/40 font-mono text-[10px] uppercase tracking-[0.2em]">
-        <p>© {new Date().getFullYear()} Duarte® Studio de Marcas</p>
-        <p>Feito com café e tipografia em São Paulo</p>
+        <p>© {new Date().getFullYear()} Bia Assis® · Brand Designer</p>
+        <p>Feito com café e tipografia em Resende, RJ</p>
       </div>
     </div>
   </footer>

@@ -50,20 +50,20 @@ export const ContactSection = () => {
             </p>
             <div className="space-y-4">
               <a
-                href="mailto:ola@duarte.studio"
+                href="mailto:abiadesigner@gmail.com"
                 data-testid="contact-email-link"
                 className="flex items-center gap-3 text-sm text-neutral-700 hover:text-[#E63946] transition-colors"
               >
                 <span className="w-10 h-10 rounded-full bg-[#F3F0EA] flex items-center justify-center">
                   <Mail size={16} />
                 </span>
-                ola@duarte.studio
+                abiadesigner@gmail.com
               </a>
               <p className="flex items-center gap-3 text-sm text-neutral-700">
                 <span className="w-10 h-10 rounded-full bg-[#F3F0EA] flex items-center justify-center">
                   <MapPin size={16} />
                 </span>
-                São Paulo · atende o Brasil inteiro
+                Resende, RJ · atende o Brasil inteiro
               </p>
               <p className="flex items-center gap-3 text-sm text-neutral-700">
                 <span className="w-10 h-10 rounded-full bg-[#F3F0EA] flex items-center justify-center font-serif font-bold">

@@ -43,7 +43,7 @@ export default function ProjectPage() {
           <Link to="/" className="flex items-center gap-3" data-testid="project-nav-logo">
             <Logo size={32} />
             <span className="font-serif text-xl tracking-tight">
-              duarte<span className="text-[#E63946]">®</span>
+              bia assis<span className="text-[#E63946]">®</span>
             </span>
           </Link>
           <Link

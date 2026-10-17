@@ -1,32 +1,32 @@
 import { motion } from "framer-motion";
-import { Award, GraduationCap, Sparkles } from "lucide-react";
+import { PenTool, GraduationCap, Sparkles } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
-const PORTRAIT =
-  "https://images.unsplash.com/photo-1654512697655-b2899afacae5?crop=entropy&cs=srgb&fm=jpg&q=85";
+const PORTRAIT = "/images/ana-retrato.jpg";
 
 const CERTIFICATES = [
-  { title: "Pós-graduação em Design de Marcas", org: "Belas Artes · São Paulo", year: "2018" },
-  { title: "Especialização em Naming & Verbal Identity", org: "Domestika Pro", year: "2020" },
-  { title: "Brand Strategy Masterclass", org: "The Futur", year: "2022" },
-  { title: "Certificação em Design Editorial", org: "IED — Istituto Europeo di Design", year: "2023" },
+  { title: "Graduação em Design", org: "Formação universitária" },
+  { title: "Especialização em Branding", org: "Agência Ana Couto" },
+  { title: "Identidade Visual", org: "Curso de extensão" },
+  { title: "UI & UX Design", org: "Curso de extensão" },
+  { title: "Mídias Sociais & Liderança", org: "Cursos complementares" },
 ];
 
 const SPECIALIZATIONS = [
+  "Branding",
   "Identidade Visual",
-  "Estratégia de Marca",
-  "Naming",
-  "Design Editorial",
-  "Packaging",
+  "Design Gráfico",
+  "Design Digital",
+  "UI & UX",
+  "Mídias Sociais",
+  "Gestão de Marca",
   "Direção de Arte",
-  "Tipografia Custom",
-  "Rebranding",
 ];
 
-const AWARDS = [
-  { title: "Seleção — Identidade do Ano", org: "Bienal de Design Gráfico", year: "2023" },
-  { title: "Destaque em Branding", org: "Design Week Awards", year: "2024" },
-  { title: "Top 10 Estúdios Independentes", org: "Clube de Criação", year: "2025" },
+const TOOLS = [
+  { title: "Adobe Illustrator", org: "Ferramenta principal de criação" },
+  { title: "Adobe Photoshop", org: "Tratamento e mockups" },
+  { title: "Adobe Creative Cloud", org: "Membro desde 2016" },
 ];
 
 export const AboutSection = () => (
@@ -44,14 +44,14 @@ export const AboutSection = () => (
           <div className="absolute -bottom-5 -right-5 w-24 h-24 bg-[#E63946] rounded-2xl -z-0" aria-hidden="true" />
           <img
             src={PORTRAIT}
-            alt="Foto de Marina Duarte, especialista em marcas e branding"
+            alt="Foto de Ana Beatriz Assis, designer especialista em marcas e branding"
             data-testid="about-portrait"
             className="relative z-10 w-full aspect-[4/5] object-cover rounded-3xl"
           />
           <div className="absolute z-20 bottom-6 left-6 bg-[#FBF9F5]/90 backdrop-blur-md rounded-2xl px-5 py-4">
-            <p className="font-serif text-xl">Marina Duarte</p>
+            <p className="font-serif text-xl">Ana Beatriz Assis</p>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500 mt-0.5">
-              Fundadora · Duarte® Studio
+              Bia Assis® · Brand Designer
             </p>
           </div>
         </motion.div>
@@ -71,16 +71,16 @@ export const AboutSection = () => (
             <em className="text-[#E63946]">mais essência.</em>
           </h2>
           <p className="text-neutral-600 leading-relaxed mb-4">
-            Sou Marina, designer de marcas há mais de dez anos. Acredito que uma
-            marca forte não nasce de um logo bonito, mas de uma ideia clara —
-            aquela que atravessa o cartão de visitas, a embalagem e o jeito de
-            falar com o mundo.
+            Sou a Bia — Ana Beatriz Assis — designer especializada em branding e
+            identidades visuais. Meu foco é desenvolver marcas autênticas, que
+            buscam seu propósito e sua voz no mundo.
           </p>
           <p className="text-neutral-600 leading-relaxed mb-10">
-            Já ajudei mais de 120 negócios a encontrar sua voz visual, do café
-            da esquina à gestora de investimentos. Meu processo é artesanal:
-            pesquisa, estratégia e desenho autoral, sempre lado a lado com o
-            cliente.
+            Minha paixão é criar soluções limpas e eficazes, pensadas em quem
+            está do outro lado. Formada em Design, com especialização em
+            Branding pela agência Ana Couto e cursos em identidade visual,
+            mídias sociais, liderança, UI e UX — sempre aprendendo para fazer a
+            diferença em cada projeto.
           </p>
 
           <Tabs defaultValue="certificados" data-testid="about-tabs">
@@ -90,7 +90,7 @@ export const AboutSection = () => (
                 data-testid="about-tab-certificates"
                 className="rounded-full font-mono text-[10px] uppercase tracking-[0.15em] data-[state=active]:bg-[#121212] data-[state=active]:text-[#FBF9F5]"
               >
-                <GraduationCap size={14} className="mr-1.5" /> Certificados
+                <GraduationCap size={14} className="mr-1.5" /> Formação
               </TabsTrigger>
               <TabsTrigger
                 value="especializacoes"
@@ -100,11 +100,11 @@ export const AboutSection = () => (
                 <Sparkles size={14} className="mr-1.5" /> Especializações
               </TabsTrigger>
               <TabsTrigger
-                value="reconhecimentos"
-                data-testid="about-tab-awards"
+                value="ferramentas"
+                data-testid="about-tab-tools"
                 className="rounded-full font-mono text-[10px] uppercase tracking-[0.15em] data-[state=active]:bg-[#121212] data-[state=active]:text-[#FBF9F5]"
               >
-                <Award size={14} className="mr-1.5" /> Prêmios
+                <PenTool size={14} className="mr-1.5" /> Ferramentas
               </TabsTrigger>
             </TabsList>
 
@@ -119,7 +119,6 @@ export const AboutSection = () => (
                       <p className="font-medium text-sm">{c.title}</p>
                       <p className="text-xs text-neutral-500 mt-0.5">{c.org}</p>
                     </div>
-                    <span className="font-mono text-xs text-[#E63946] shrink-0">{c.year}</span>
                   </li>
                 ))}
               </ul>
@@ -138,18 +137,17 @@ export const AboutSection = () => (
               </div>
             </TabsContent>
 
-            <TabsContent value="reconhecimentos">
-              <ul className="space-y-3" data-testid="awards-list">
-                {AWARDS.map((a) => (
+            <TabsContent value="ferramentas">
+              <ul className="space-y-3" data-testid="tools-list">
+                {TOOLS.map((t) => (
                   <li
-                    key={a.title}
+                    key={t.title}
                     className="bg-white rounded-2xl border border-[rgba(18,18,18,0.08)] px-5 py-4 flex items-center justify-between gap-4"
                   >
                     <div>
-                      <p className="font-medium text-sm">{a.title}</p>
-                      <p className="text-xs text-neutral-500 mt-0.5">{a.org}</p>
+                      <p className="font-medium text-sm">{t.title}</p>
+                      <p className="text-xs text-neutral-500 mt-0.5">{t.org}</p>
                     </div>
-                    <span className="font-mono text-xs text-[#E63946] shrink-0">{a.year}</span>
                   </li>
                 ))}
               </ul>

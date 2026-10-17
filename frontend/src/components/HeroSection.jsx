@@ -10,9 +10,9 @@ const LINES = [
 ];
 
 const STATS = [
-  { value: "10+", label: "anos de estrada" },
-  { value: "120+", label: "marcas criadas" },
-  { value: "8", label: "prêmios de design" },
+  { value: "10+", label: "anos de design" },
+  { value: "Branding", label: "especialização · Agência Ana Couto" },
+  { value: "RJ", label: "de Resende para o Brasil" },
 ];
 
 const Asterisk = () => (
@@ -62,7 +62,7 @@ export const HeroSection = () => {
           data-testid="hero-eyebrow"
         >
           <span className="w-8 h-px bg-[#E63946]" />
-          Marina Duarte — Especialista em marcas · São Paulo
+          Ana Beatriz Assis — Especialista em marcas · Resende, RJ
         </motion.p>
 
         <h1 className="font-serif font-medium tracking-tight leading-[1.05] text-[#121212] text-5xl sm:text-7xl lg:text-8xl">

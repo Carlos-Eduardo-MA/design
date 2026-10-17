@@ -1,9 +1,9 @@
 export const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 export const WHATSAPP_URL =
-  "https://wa.me/5511999999999?text=" +
+  "https://wa.me/5524999998186?text=" +
   encodeURIComponent(
-    "Olá! Vim pelo seu site e gostaria de conversar sobre um projeto de branding."
+    "Olá, Bia! Vim pelo seu site e gostaria de conversar sobre um projeto de branding."
   );
 
-export const ADMIN_TOKEN_KEY = "duarte_admin_token";
+export const ADMIN_TOKEN_KEY = "bia_admin_token";
