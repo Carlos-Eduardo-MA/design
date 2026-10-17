@@ -37,12 +37,12 @@ export const ContactSection = () => {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500 mb-4 flex items-center gap-3">
-              <span className="w-8 h-px bg-[#E63946]" /> Contato
+              <span className="w-8 h-px bg-[#121212]" /> Contato
             </p>
             <h2 className="font-serif font-medium tracking-tight text-4xl sm:text-6xl mb-6">
               Tem uma marca
               <br />
-              pra <em className="text-[#E63946]">nascer?</em>
+              pra <em className="text-[#121212]">nascer?</em>
             </h2>
             <p className="text-neutral-600 leading-relaxed max-w-md mb-10">
               Me conta a ideia — pode ser rabiscada mesmo. Eu retorno com um
@@ -52,7 +52,7 @@ export const ContactSection = () => {
               <a
                 href="mailto:abiadesigner@gmail.com"
                 data-testid="contact-email-link"
-                className="flex items-center gap-3 text-sm text-neutral-700 hover:text-[#E63946] transition-colors"
+                className="flex items-center gap-3 text-sm text-neutral-700 hover:text-[#121212] transition-colors"
               >
                 <span className="w-10 h-10 rounded-full bg-[#F3F0EA] flex items-center justify-center">
                   <Mail size={16} />
@@ -134,7 +134,7 @@ export const ContactSection = () => {
               type="submit"
               disabled={sending}
               data-testid="contact-submit-btn"
-              className="w-full bg-[#121212] text-[#FBF9F5] rounded-full py-4 font-mono text-xs uppercase tracking-[0.2em] hover:bg-[#E63946] transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-60"
+              className="w-full bg-[#121212] text-[#FBF9F5] rounded-full py-4 font-mono text-xs uppercase tracking-[0.2em] border border-[#121212] hover:bg-transparent hover:text-[#121212] transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-60"
             >
               {sending ? (
                 <>

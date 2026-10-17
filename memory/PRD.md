@@ -40,6 +40,13 @@ Decisões da usuária:
 ## Credenciais
 - Admin: admin@duarte.studio / duarte123 (ver /app/memory/test_credentials.md)
 
+## Identidade visual (ajustes 17/10/2026)
+- Paleta estrita preto/cinza/branco (vermelho #E63946 removido de todo o site; WhatsApp mantém verde da marca)
+- Hero: selo giratório "BIA ASSIS • BRANDING • DESIGN COM ALMA" com carinha (substituiu o asterisco com parallax), sublinhado rabiscado animado em "com alma,"
+- Fix: descendentes do hero não são mais cortadas (padding nas máscaras de linha)
+- Marquee com texto alternando sólido/vazado (outline)
+- Rodapé: linha única "© 2026 Bia Assis® · Brand Designer · Resende, RJ"
+
 ## Pendências conhecidas / backlog
 - P0: ~~Trocar número de WhatsApp~~ FEITO (número real +55 24 99999-8186)
 - P0: ~~Substituir conteúdo mock~~ FEITO (dados reais da Ana Beatriz importados do Behance + fotos enviadas)

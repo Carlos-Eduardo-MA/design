@@ -9,7 +9,7 @@ export const Footer = () => (
           <div className="flex items-center gap-3 mb-4">
             <Logo size={40} dark={false} />
             <span className="font-serif text-2xl">
-              bia assis<span className="text-[#E63946]">®</span>
+              bia assis<span className="text-neutral-400">®</span>
             </span>
           </div>
           <p className="text-white/50 text-sm max-w-xs leading-relaxed">
@@ -29,7 +29,7 @@ export const Footer = () => (
             rel="noopener noreferrer"
             data-testid="footer-social-instagram"
             aria-label="Instagram"
-            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#E63946] hover:border-[#E63946] transition-colors"
+            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#FBF9F5] hover:text-[#121212] hover:border-[#FBF9F5] transition-colors"
           >
             <Instagram size={16} />
           </a>
@@ -39,15 +39,14 @@ export const Footer = () => (
             rel="noopener noreferrer"
             data-testid="footer-social-linkedin"
             aria-label="LinkedIn"
-            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#E63946] hover:border-[#E63946] transition-colors"
+            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#FBF9F5] hover:text-[#121212] hover:border-[#FBF9F5] transition-colors"
           >
             <Linkedin size={16} />
           </a>
         </div>
       </div>
-      <div className="pt-8 flex flex-col sm:flex-row justify-between gap-3 text-white/40 font-mono text-[10px] uppercase tracking-[0.2em]">
-        <p>© {new Date().getFullYear()} Bia Assis® · Brand Designer</p>
-        <p>Feito com café e tipografia em Resende, RJ</p>
+      <div className="pt-8 text-white/40 font-mono text-[10px] uppercase tracking-[0.2em]">
+        <p data-testid="footer-copyright">© {new Date().getFullYear()} Bia Assis® · Brand Designer · Resende, RJ</p>
       </div>
     </div>
   </footer>

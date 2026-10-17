@@ -74,12 +74,12 @@ export const PinterestGallery = () => {
         >
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500 mb-4 flex items-center gap-3">
-              <span className="w-8 h-px bg-[#E63946]" /> Portfólio
+              <span className="w-8 h-px bg-[#121212]" /> Portfólio
             </p>
             <h2 className="font-serif font-medium tracking-tight text-4xl sm:text-5xl">
               Trabalhos que contam
               <br />
-              <em className="text-[#E63946]">histórias de marca</em>
+              <em className="text-[#121212]">histórias de marca</em>
             </h2>
           </div>
           <div className="relative w-full md:w-72">
@@ -166,7 +166,7 @@ export const PinterestGallery = () => {
                     aria-label="Salvar projeto"
                     className={`absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center backdrop-blur-md transition-all duration-300 ${
                       saved.includes(p.id)
-                        ? "bg-[#E63946] text-white opacity-100"
+                        ? "bg-[#121212] text-white opacity-100"
                         : "bg-white/70 text-[#121212] opacity-0 group-hover:opacity-100"
                     }`}
                   >

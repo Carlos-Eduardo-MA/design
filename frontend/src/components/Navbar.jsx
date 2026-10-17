@@ -37,7 +37,7 @@ export const Navbar = () => {
         <a href="#inicio" className="flex items-center gap-3" data-testid="nav-logo">
           <Logo size={34} />
           <span className="font-serif text-xl tracking-tight">
-            bia assis<span className="text-[#E63946]">®</span>
+            bia assis<span className="text-[#121212]">®</span>
           </span>
         </a>
 
@@ -66,7 +66,7 @@ export const Navbar = () => {
           <a
             href="#contato"
             data-testid="nav-cta-contato"
-            className="bg-[#121212] text-[#FBF9F5] font-mono text-xs uppercase tracking-[0.2em] px-5 py-2.5 rounded-full hover:bg-[#E63946] transition-colors duration-300"
+            className="bg-[#121212] text-[#FBF9F5] font-mono text-xs uppercase tracking-[0.2em] px-5 py-2.5 rounded-full border border-[#121212] hover:bg-transparent hover:text-[#121212] transition-colors duration-300"
           >
             Fale comigo
           </a>

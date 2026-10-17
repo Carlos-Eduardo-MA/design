@@ -43,7 +43,7 @@ export default function ProjectPage() {
           <Link to="/" className="flex items-center gap-3" data-testid="project-nav-logo">
             <Logo size={32} />
             <span className="font-serif text-xl tracking-tight">
-              bia assis<span className="text-[#E63946]">®</span>
+              bia assis<span className="text-[#121212]">®</span>
             </span>
           </Link>
           <Link
@@ -68,7 +68,7 @@ export default function ProjectPage() {
           <p className="text-neutral-500 mb-8">Ele pode ter sido removido da galeria.</p>
           <Link
             to="/"
-            className="bg-[#121212] text-[#FBF9F5] px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.2em] hover:bg-[#E63946] transition-colors"
+            className="bg-[#121212] text-[#FBF9F5] px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.2em] hover:bg-[#121212] transition-colors"
           >
             Voltar ao portfólio
           </Link>
@@ -82,10 +82,10 @@ export default function ProjectPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="font-mono text-xs uppercase tracking-[0.25em] text-[#E63946] mb-5 flex items-center gap-3"
+              className="font-mono text-xs uppercase tracking-[0.25em] text-[#121212] mb-5 flex items-center gap-3"
               data-testid="project-category"
             >
-              <span className="w-8 h-px bg-[#E63946]" /> {project.category}
+              <span className="w-8 h-px bg-[#121212]" /> {project.category}
             </motion.p>
 
             <div className="grid lg:grid-cols-[1fr_320px] gap-10 items-end mb-12">
@@ -159,7 +159,7 @@ export default function ProjectPage() {
           <section className="bg-[#121212] text-[#FBF9F5] py-16 sm:py-20" data-testid="project-cta">
             <div className="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <h2 className="font-serif text-3xl sm:text-4xl max-w-md">
-                Gostou? Sua marca pode ser a <em className="text-[#E63946]">próxima.</em>
+                Gostou? Sua marca pode ser a <em className="underline decoration-2 underline-offset-8">próxima.</em>
               </h2>
               <a
                 href={WHATSAPP_URL}
@@ -185,7 +185,7 @@ export default function ProjectPage() {
                   <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400 flex items-center gap-2 mb-2">
                     <ArrowLeft size={12} /> Projeto anterior
                   </p>
-                  <p className="font-serif text-xl group-hover:text-[#E63946] transition-colors">{prev.title}</p>
+                  <p className="font-serif text-xl group-hover:text-[#121212] transition-colors">{prev.title}</p>
                 </Link>
               )}
               {next && (
@@ -197,7 +197,7 @@ export default function ProjectPage() {
                   <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400 flex items-center justify-end gap-2 mb-2">
                     Próximo projeto <ArrowRight size={12} />
                   </p>
-                  <p className="font-serif text-xl group-hover:text-[#E63946] transition-colors">{next.title}</p>
+                  <p className="font-serif text-xl group-hover:text-[#121212] transition-colors">{next.title}</p>
                 </Link>
               )}
             </nav>
