@@ -17,7 +17,7 @@ const emptyForm = {
 };
 
 const field =
-  "w-full bg-white border border-[rgba(18,18,18,0.12)] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#121212] transition-colors placeholder:text-neutral-400";
+  "w-full bg-white border border-[rgba(86,28,36,0.12)] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#561C24] transition-colors placeholder:text-neutral-400";
 
 export default function Admin() {
   const [token, setToken] = useState(() => localStorage.getItem(ADMIN_TOKEN_KEY) || "");
@@ -111,7 +111,7 @@ export default function Admin() {
             <h1 className="font-serif text-3xl mt-4">Painel da galeria</h1>
             <p className="text-sm text-neutral-500 mt-1">Acesso restrito à Bia</p>
           </div>
-          <form onSubmit={handleLogin} className="bg-[#F3F0EA] rounded-3xl p-8 space-y-4" data-testid="admin-login-form">
+          <form onSubmit={handleLogin} className="bg-[#C7B7A3] rounded-3xl p-8 space-y-4" data-testid="admin-login-form">
             <input
               type="email"
               required
@@ -131,7 +131,7 @@ export default function Admin() {
               className={field}
             />
             {loginError && (
-              <p className="text-sm text-[#121212]" data-testid="admin-login-error">
+              <p className="text-sm text-[#561C24]" data-testid="admin-login-error">
                 {loginError}
               </p>
             )}
@@ -139,7 +139,7 @@ export default function Admin() {
               type="submit"
               disabled={loggingIn}
               data-testid="admin-login-submit"
-              className="w-full bg-[#121212] text-[#FBF9F5] rounded-full py-3.5 font-mono text-xs uppercase tracking-[0.2em] hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
+              className="w-full bg-[#561C24] text-[#E8D8C4] rounded-full py-3.5 font-mono text-xs uppercase tracking-[0.2em] hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
             >
               {loggingIn ? <Loader2 size={16} className="animate-spin" /> : "Entrar"}
             </button>
@@ -159,7 +159,7 @@ export default function Admin() {
   return (
     <main className="min-h-screen" data-testid="admin-panel">
       <div className="noise-overlay" aria-hidden="true" />
-      <header className="border-b border-[rgba(18,18,18,0.08)] bg-[rgba(251,249,245,0.85)] backdrop-blur-md sticky top-0 z-40">
+      <header className="border-b border-[rgba(86,28,36,0.08)] bg-[rgba(232,216,196,0.85)] backdrop-blur-md sticky top-0 z-40">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Logo size={30} />
@@ -172,7 +172,7 @@ export default function Admin() {
             <button
               onClick={handleLogout}
               data-testid="admin-logout-btn"
-              className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#121212] hover:opacity-70 transition-opacity"
+              className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-[#561C24] hover:opacity-70 transition-opacity"
             >
               <LogOut size={14} /> Sair
             </button>
@@ -183,9 +183,9 @@ export default function Admin() {
       <div className="max-w-6xl mx-auto px-5 sm:px-8 py-10 grid lg:grid-cols-[380px_1fr] gap-10">
         <section>
           <h2 className="font-serif text-2xl mb-5 flex items-center gap-2">
-            <Plus size={20} className="text-[#121212]" /> Novo projeto
+            <Plus size={20} className="text-[#561C24]" /> Novo projeto
           </h2>
-          <form onSubmit={handleCreate} className="bg-[#F3F0EA] rounded-3xl p-6 space-y-3" data-testid="admin-project-form">
+          <form onSubmit={handleCreate} className="bg-[#C7B7A3] rounded-3xl p-6 space-y-3" data-testid="admin-project-form">
             <input
               required
               placeholder="Título do projeto"
@@ -249,21 +249,21 @@ export default function Admin() {
               type="submit"
               disabled={saving}
               data-testid="admin-project-submit"
-              className="w-full bg-[#121212] text-[#FBF9F5] rounded-full py-3.5 font-mono text-xs uppercase tracking-[0.2em] hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
+              className="w-full bg-[#561C24] text-[#E8D8C4] rounded-full py-3.5 font-mono text-xs uppercase tracking-[0.2em] hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
             >
               {saving ? <Loader2 size={16} className="animate-spin" /> : "Adicionar à galeria"}
             </button>
           </form>
 
           <h2 className="font-serif text-2xl mt-10 mb-5 flex items-center gap-2">
-            <Mail size={20} className="text-[#121212]" /> Mensagens ({messages.length})
+            <Mail size={20} className="text-[#561C24]" /> Mensagens ({messages.length})
           </h2>
           <div className="space-y-3" data-testid="admin-messages-list">
             {messages.length === 0 && (
               <p className="text-sm text-neutral-500">Nenhuma mensagem por enquanto.</p>
             )}
             {messages.map((m) => (
-              <div key={m.id} className="bg-white rounded-2xl border border-[rgba(18,18,18,0.08)] p-4" data-testid={`admin-message-${m.id}`}>
+              <div key={m.id} className="bg-white rounded-2xl border border-[rgba(86,28,36,0.08)] p-4" data-testid={`admin-message-${m.id}`}>
                 <div className="flex justify-between gap-3 mb-1">
                   <p className="font-medium text-sm">{m.name}</p>
                   <p className="text-xs text-neutral-400">{m.email}</p>
@@ -280,10 +280,10 @@ export default function Admin() {
             {projects.map((p) => (
               <div
                 key={p.id}
-                className="bg-white rounded-2xl border border-[rgba(18,18,18,0.08)] overflow-hidden group"
+                className="bg-white rounded-2xl border border-[rgba(86,28,36,0.08)] overflow-hidden group"
                 data-testid={`admin-project-${p.id}`}
               >
-                <div className="aspect-[16/10] bg-[#EFECE6] overflow-hidden">
+                <div className="aspect-[16/10] bg-[#E8D8C4] overflow-hidden">
                   <img src={p.image_url} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <div className="p-4 flex items-start justify-between gap-3">
@@ -297,7 +297,7 @@ export default function Admin() {
                     onClick={() => handleDelete(p.id)}
                     data-testid={`admin-delete-${p.id}`}
                     aria-label={`Excluir ${p.title}`}
-                    className="shrink-0 w-9 h-9 rounded-full border border-[rgba(18,18,18,0.1)] flex items-center justify-center text-neutral-400 hover:bg-[#121212] hover:text-white hover:border-[#121212] transition-colors"
+                    className="shrink-0 w-9 h-9 rounded-full border border-[rgba(86,28,36,0.1)] flex items-center justify-center text-neutral-400 hover:bg-[#561C24] hover:text-white hover:border-[#561C24] transition-colors"
                   >
                     <Trash2 size={15} />
                   </button>

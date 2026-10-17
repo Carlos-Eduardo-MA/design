@@ -2,14 +2,14 @@ import { Logo } from "@/components/Logo";
 import { Instagram, Linkedin } from "lucide-react";
 
 export const Footer = () => (
-  <footer className="bg-[#121212] text-[#FBF9F5] pt-16 pb-8" data-testid="footer">
+  <footer className="bg-[#561C24] text-[#E8D8C4] pt-16 pb-8" data-testid="footer">
     <div className="max-w-7xl mx-auto px-5 sm:px-8">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 pb-12 border-b border-white/10">
         <div>
           <div className="flex items-center gap-3 mb-4">
             <Logo size={40} dark={false} />
             <span className="font-serif text-2xl">
-              bia assis<span className="text-[#FF4A1F]">®</span>
+              bia assis<span className="text-[#C7B7A3]">®</span>
             </span>
           </div>
           <p className="text-white/50 text-sm max-w-xs leading-relaxed">
@@ -29,7 +29,7 @@ export const Footer = () => (
             rel="noopener noreferrer"
             data-testid="footer-social-instagram"
             aria-label="Instagram"
-            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#FBF9F5] hover:text-[#121212] hover:border-[#FBF9F5] transition-colors"
+            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#E8D8C4] hover:text-[#561C24] hover:border-[#E8D8C4] transition-colors"
           >
             <Instagram size={16} />
           </a>
@@ -39,7 +39,7 @@ export const Footer = () => (
             rel="noopener noreferrer"
             data-testid="footer-social-linkedin"
             aria-label="LinkedIn"
-            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#FBF9F5] hover:text-[#121212] hover:border-[#FBF9F5] transition-colors"
+            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-[#E8D8C4] hover:text-[#561C24] hover:border-[#E8D8C4] transition-colors"
           >
             <Linkedin size={16} />
           </a>

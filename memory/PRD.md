@@ -40,13 +40,13 @@ Decisões da usuária:
 ## Credenciais
 - Admin: admin@duarte.studio / duarte123 (ver /app/memory/test_credentials.md)
 
-## Identidade visual (ajustes 17/10/2026)
-- Paleta base preto/cinza/branco + acentos vibrantes autorizados pela usuária: vermelho-laranja #FF4A1F, lavanda #C9B8FF, amarelo #FFC61A, azul #7FB5FF
-- Hero estilo colagem criativa (referências enviadas): foto 2 da Bia (camisa branca) em arco P&B com borda branca, flor vermelha girando, blob lavanda, pílulas flutuantes (branding/identidade visual/naming/direção de arte), sparkles, highlight amarelo em "com alma,"
-- Fix: descendentes do hero não são mais cortadas (padding nas máscaras de linha)
-- Marquee com texto alternando sólido/vazado e pontinhos coloridos
-- Highlights coloridos nos títulos das seções (lavanda no portfólio, amarelo no sobre, azul no contato)
-- Rodapé: linha única "© 2026 Bia Assis® · Brand Designer · Resende, RJ"
+## Identidade visual (ajustes 17/10/2026 — v2)
+- Paleta oficial da marca: #561C24 (vinho escuro), #6D2932 (vinho), #C7B7A3 (taupe), #E8D8C4 (creme)
+- Tipografia: títulos em Archivo (reta, pesada) + Caveat (script) para palavras de destaque; efeitos "tortos" (rotação, caixa tracejada)
+- Hero: adesivo da cabeça da Bia (bia-cabeca.png, transparente) balançando, pasta de arquivos "projetos", notebook ilustrado, blob taupe, sparkles; "com alma," em script e "não só com logo." em caixa tracejada
+- Sobre: abas substituídas por pilha de pastas de arquivo (clique traz a pasta pra frente); foto nova (bia-notebook.png)
+- Marquee: vinho/creme (preto e branco)
+- Fotos em /public/images: bia-cabeca.png, bia-notebook.png, ana-blazer.jpg (livre), ana-retrato.jpg (livre), ict-*.png
 
 ## Pendências conhecidas / backlog
 - P0: ~~Trocar número de WhatsApp~~ FEITO (número real +55 24 99999-8186)

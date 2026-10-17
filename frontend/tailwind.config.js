@@ -10,7 +10,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        serif: ['Archivo', '-apple-system', 'sans-serif'],
+        script: ['Caveat', 'cursive'],
         sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },

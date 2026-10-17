@@ -24,7 +24,7 @@ export const ContactSection = () => {
   };
 
   const field =
-    "w-full bg-white border border-[rgba(18,18,18,0.12)] rounded-2xl px-5 py-4 text-sm outline-none focus:border-[#121212] transition-colors placeholder:text-neutral-400";
+    "w-full bg-white border border-[rgba(86,28,36,0.12)] rounded-2xl px-5 py-4 text-sm outline-none focus:border-[#561C24] transition-colors placeholder:text-neutral-400";
 
   return (
     <section id="contato" className="py-24 sm:py-32" data-testid="contact-section">
@@ -37,12 +37,12 @@ export const ContactSection = () => {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500 mb-4 flex items-center gap-3">
-              <span className="w-8 h-px bg-[#121212]" /> Contato
+              <span className="w-8 h-px bg-[#561C24]" /> Contato
             </p>
-            <h2 className="font-serif font-medium tracking-tight text-4xl sm:text-6xl mb-6">
+            <h2 className="font-serif font-bold tracking-tight text-4xl sm:text-6xl mb-6">
               Tem uma marca
               <br />
-              pra <em className="bg-[#7FB5FF] px-2 rounded-lg inline-block -rotate-1">nascer?</em>
+              pra <em className="bg-[#C7B7A3] px-2 rounded-lg inline-block -rotate-1">nascer?</em>
             </h2>
             <p className="text-neutral-600 leading-relaxed max-w-md mb-10">
               Me conta a ideia — pode ser rabiscada mesmo. Eu retorno com um
@@ -52,21 +52,21 @@ export const ContactSection = () => {
               <a
                 href="mailto:abiadesigner@gmail.com"
                 data-testid="contact-email-link"
-                className="flex items-center gap-3 text-sm text-neutral-700 hover:text-[#121212] transition-colors"
+                className="flex items-center gap-3 text-sm text-neutral-700 hover:text-[#561C24] transition-colors"
               >
-                <span className="w-10 h-10 rounded-full bg-[#F3F0EA] flex items-center justify-center">
+                <span className="w-10 h-10 rounded-full bg-[#C7B7A3] flex items-center justify-center">
                   <Mail size={16} />
                 </span>
                 abiadesigner@gmail.com
               </a>
               <p className="flex items-center gap-3 text-sm text-neutral-700">
-                <span className="w-10 h-10 rounded-full bg-[#F3F0EA] flex items-center justify-center">
+                <span className="w-10 h-10 rounded-full bg-[#C7B7A3] flex items-center justify-center">
                   <MapPin size={16} />
                 </span>
                 Atende o Brasil inteiro, online
               </p>
               <p className="flex items-center gap-3 text-sm text-neutral-700">
-                <span className="w-10 h-10 rounded-full bg-[#F3F0EA] flex items-center justify-center font-serif font-bold">
+                <span className="w-10 h-10 rounded-full bg-[#C7B7A3] flex items-center justify-center font-serif font-bold">
                   D
                 </span>
                 Segunda a sexta, 9h às 18h
@@ -80,7 +80,7 @@ export const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-[#F3F0EA] rounded-3xl p-6 sm:p-10 space-y-4"
+            className="bg-[#C7B7A3] rounded-3xl p-6 sm:p-10 space-y-4"
             data-testid="contact-form"
           >
             <div>
@@ -134,7 +134,7 @@ export const ContactSection = () => {
               type="submit"
               disabled={sending}
               data-testid="contact-submit-btn"
-              className="w-full bg-[#121212] text-[#FBF9F5] rounded-full py-4 font-mono text-xs uppercase tracking-[0.2em] border border-[#121212] hover:bg-transparent hover:text-[#121212] transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-60"
+              className="w-full bg-[#561C24] text-[#E8D8C4] rounded-full py-4 font-mono text-xs uppercase tracking-[0.2em] border border-[#561C24] hover:bg-transparent hover:text-[#561C24] transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-60"
             >
               {sending ? (
                 <>

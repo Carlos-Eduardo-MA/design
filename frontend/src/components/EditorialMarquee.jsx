@@ -15,18 +15,14 @@ export const EditorialMarquee = () => {
       {TERMS.map((t, i) => (
         <span key={t} className="flex items-center">
           <span
-            className={`font-serif italic text-2xl sm:text-3xl px-6 ${
-              i % 2 ? "text-transparent" : "text-[#121212]"
+            className={`font-serif font-bold italic text-2xl sm:text-3xl px-6 ${
+              i % 2 ? "text-transparent" : "text-[#E8D8C4]"
             }`}
-            style={i % 2 ? { WebkitTextStroke: "1.2px #121212" } : undefined}
+            style={i % 2 ? { WebkitTextStroke: "1.2px #E8D8C4" } : undefined}
           >
             {t}
           </span>
-          <span
-            className="w-2 h-2 rounded-full"
-            style={{ backgroundColor: ["#FF4A1F", "#C9B8FF", "#FFC61A", "#7FB5FF"][i % 4] }}
-            aria-hidden="true"
-          />
+          <span className="w-2 h-2 rounded-full bg-[#E8D8C4]" aria-hidden="true" />
         </span>
       ))}
     </div>
@@ -34,7 +30,7 @@ export const EditorialMarquee = () => {
 
   return (
     <div
-      className="border-y border-[rgba(18,18,18,0.1)] bg-[#F3F0EA] py-5 overflow-hidden select-none"
+      className="bg-[#561C24] py-5 overflow-hidden select-none"
       data-testid="editorial-marquee"
       aria-hidden="true"
     >
