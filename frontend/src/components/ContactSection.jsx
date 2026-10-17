@@ -63,7 +63,7 @@ export const ContactSection = () => {
                 <span className="w-10 h-10 rounded-full bg-[#F3F0EA] flex items-center justify-center">
                   <MapPin size={16} />
                 </span>
-                Resende, RJ · atende o Brasil inteiro
+                Atende o Brasil inteiro, online
               </p>
               <p className="flex items-center gap-3 text-sm text-neutral-700">
                 <span className="w-10 h-10 rounded-full bg-[#F3F0EA] flex items-center justify-center font-serif font-bold">
