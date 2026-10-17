@@ -40,13 +40,13 @@ Decisões da usuária:
 ## Credenciais
 - Admin: admin@duarte.studio / duarte123 (ver /app/memory/test_credentials.md)
 
-## Identidade visual (ajustes 17/10/2026 — v2)
-- Paleta oficial da marca: #561C24 (vinho escuro), #6D2932 (vinho), #C7B7A3 (taupe), #E8D8C4 (creme)
-- Tipografia: títulos em Archivo (reta, pesada) + Caveat (script) para palavras de destaque; efeitos "tortos" (rotação, caixa tracejada)
-- Hero: adesivo da cabeça da Bia (bia-cabeca.png, transparente) balançando, pasta de arquivos "projetos", notebook ilustrado, blob taupe, sparkles; "com alma," em script e "não só com logo." em caixa tracejada
-- Sobre: abas substituídas por pilha de pastas de arquivo (clique traz a pasta pra frente); foto nova (bia-notebook.png)
-- Marquee: vinho/creme (preto e branco)
-- Fotos em /public/images: bia-cabeca.png, bia-notebook.png, ana-blazer.jpg (livre), ana-retrato.jpg (livre), ict-*.png
+## Identidade visual (v3 — 17/10/2026)
+- Base branco/preto suave (#FBF9F5 / #121212) + paleta de acentos da marca: #561C24, #6D2932, #C7B7A3, #E8D8C4 (substituem azul/amarelo/lavanda/laranja)
+- Tipografia: títulos Archivo (reta, black) + Caveat script nos destaques; efeitos tortos (rotação, caixa tracejada)
+- Hero: adesivo da cabeça balançando + pasta "projetos" + notebook + pílulas flutuantes + blob taupe + sparkles (tudo na paleta)
+- Sobre: pilha de pastas de arquivo clicáveis (cores da paleta); foto bia-notebook.png
+- Marquee: preto/branco (fundo #121212, texto creme sólido/vazado)
+- Fix mobile: overflow-x clip no body; centralização via x/y do framer-motion
 
 ## Pendências conhecidas / backlog
 - P0: ~~Trocar número de WhatsApp~~ FEITO (número real +55 24 99999-8186)

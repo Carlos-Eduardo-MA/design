@@ -28,7 +28,7 @@ export const Navbar = () => {
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,border-color] duration-500 ${
         scrolled
-          ? "bg-[rgba(232,216,196,0.82)] backdrop-blur-md border-b border-[rgba(86,28,36,0.08)]"
+          ? "bg-[rgba(251,249,245,0.82)] backdrop-blur-md border-b border-[rgba(18,18,18,0.08)]"
           : "bg-transparent border-b border-transparent"
       }`}
       data-testid="main-navbar"
@@ -66,7 +66,7 @@ export const Navbar = () => {
           <a
             href="#contato"
             data-testid="nav-cta-contato"
-            className="bg-[#561C24] text-[#E8D8C4] font-mono text-xs uppercase tracking-[0.2em] px-5 py-2.5 rounded-full border border-[#561C24] hover:bg-transparent hover:text-[#561C24] transition-colors duration-300"
+            className="bg-[#121212] text-[#FBF9F5] font-mono text-xs uppercase tracking-[0.2em] px-5 py-2.5 rounded-full border border-[#121212] hover:bg-transparent hover:text-[#121212] transition-colors duration-300"
           >
             Fale comigo
           </a>
@@ -86,7 +86,7 @@ export const Navbar = () => {
         <motion.nav
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-[#E8D8C4] border-t border-[rgba(86,28,36,0.08)] px-6 py-6 flex flex-col gap-5"
+          className="md:hidden bg-[#FBF9F5] border-t border-[rgba(18,18,18,0.08)] px-6 py-6 flex flex-col gap-5"
           data-testid="nav-mobile-menu"
         >
           {LINKS.map((l) => (

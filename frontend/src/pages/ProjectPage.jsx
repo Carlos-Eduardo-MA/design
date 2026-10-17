@@ -38,12 +38,12 @@ export default function ProjectPage() {
     <main className="min-h-screen" data-testid="project-page">
       <div className="noise-overlay" aria-hidden="true" />
 
-      <header className="border-b border-[rgba(86,28,36,0.08)] bg-[rgba(232,216,196,0.85)] backdrop-blur-md sticky top-0 z-40">
+      <header className="border-b border-[rgba(18,18,18,0.08)] bg-[rgba(251,249,245,0.85)] backdrop-blur-md sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 h-16 sm:h-20 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3" data-testid="project-nav-logo">
             <Logo size={32} />
             <span className="font-serif text-xl tracking-tight">
-              bia assis<span className="text-[#561C24]">®</span>
+              bia assis<span className="text-[#121212]">®</span>
             </span>
           </Link>
           <Link
@@ -68,7 +68,7 @@ export default function ProjectPage() {
           <p className="text-neutral-500 mb-8">Ele pode ter sido removido da galeria.</p>
           <Link
             to="/"
-            className="bg-[#561C24] text-[#E8D8C4] px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.2em] hover:bg-[#561C24] transition-colors"
+            className="bg-[#121212] text-[#FBF9F5] px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.2em] hover:bg-[#121212] transition-colors"
           >
             Voltar ao portfólio
           </Link>
@@ -85,7 +85,7 @@ export default function ProjectPage() {
               className="font-mono text-xs uppercase tracking-[0.25em] text-[#6D2932] mb-5 flex items-center gap-3"
               data-testid="project-category"
             >
-              <span className="w-8 h-px bg-[#561C24]" /> {project.category}
+              <span className="w-8 h-px bg-[#121212]" /> {project.category}
             </motion.p>
 
             <div className="grid lg:grid-cols-[1fr_320px] gap-10 items-end mb-12">
@@ -102,7 +102,7 @@ export default function ProjectPage() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="grid grid-cols-3 lg:grid-cols-1 gap-4 lg:border-l lg:border-[rgba(86,28,36,0.1)] lg:pl-8"
+                className="grid grid-cols-3 lg:grid-cols-1 gap-4 lg:border-l lg:border-[rgba(18,18,18,0.1)] lg:pl-8"
                 data-testid="project-meta"
               >
                 {project.client && (
@@ -128,7 +128,7 @@ export default function ProjectPage() {
               initial={{ opacity: 0, y: 32 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="rounded-3xl overflow-hidden bg-[#E8D8C4] mb-14"
+              className="rounded-3xl overflow-hidden bg-[#FBF9F5] mb-14"
             >
               <img
                 src={project.image_url}
@@ -156,7 +156,7 @@ export default function ProjectPage() {
             )}
           </article>
 
-          <section className="bg-[#561C24] text-[#E8D8C4] py-16 sm:py-20" data-testid="project-cta">
+          <section className="bg-[#121212] text-[#FBF9F5] py-16 sm:py-20" data-testid="project-cta">
             <div className="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
               <h2 className="font-serif text-3xl sm:text-4xl max-w-md">
                 Gostou? Sua marca pode ser a <em className="underline decoration-2 underline-offset-8">próxima.</em>
@@ -166,7 +166,7 @@ export default function ProjectPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="project-cta-whatsapp"
-                className="shrink-0 bg-[#E8D8C4] text-[#561C24] px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.2em] hover:bg-[#25D366] hover:text-white transition-colors duration-300 flex items-center gap-3 w-fit"
+                className="shrink-0 bg-[#FBF9F5] text-[#121212] px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.2em] hover:bg-[#25D366] hover:text-white transition-colors duration-300 flex items-center gap-3 w-fit"
               >
                 Chamar no WhatsApp
                 <span className="w-1.5 h-1.5 rounded-full bg-[#25D366]" />
@@ -180,24 +180,24 @@ export default function ProjectPage() {
                 <Link
                   to={`/projeto/${prev.id}`}
                   data-testid="project-prev-link"
-                  className="group border border-[rgba(86,28,36,0.1)] rounded-2xl p-6 hover:border-[#561C24] transition-colors"
+                  className="group border border-[rgba(18,18,18,0.1)] rounded-2xl p-6 hover:border-[#121212] transition-colors"
                 >
                   <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400 flex items-center gap-2 mb-2">
                     <ArrowLeft size={12} /> Projeto anterior
                   </p>
-                  <p className="font-serif text-xl group-hover:text-[#561C24] transition-colors">{prev.title}</p>
+                  <p className="font-serif text-xl group-hover:text-[#121212] transition-colors">{prev.title}</p>
                 </Link>
               )}
               {next && (
                 <Link
                   to={`/projeto/${next.id}`}
                   data-testid="project-next-link"
-                  className="group border border-[rgba(86,28,36,0.1)] rounded-2xl p-6 hover:border-[#561C24] transition-colors text-right"
+                  className="group border border-[rgba(18,18,18,0.1)] rounded-2xl p-6 hover:border-[#121212] transition-colors text-right"
                 >
                   <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400 flex items-center justify-end gap-2 mb-2">
                     Próximo projeto <ArrowRight size={12} />
                   </p>
-                  <p className="font-serif text-xl group-hover:text-[#561C24] transition-colors">{next.title}</p>
+                  <p className="font-serif text-xl group-hover:text-[#121212] transition-colors">{next.title}</p>
                 </Link>
               )}
             </nav>

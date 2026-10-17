@@ -7,7 +7,7 @@ export const Logo = ({ size = 34, dark = true }) => (
     aria-hidden="true"
     data-testid="logo-mark"
   >
-    <rect width="64" height="64" rx="14" fill={dark ? "#561C24" : "#E8D8C4"} />
+    <rect width="64" height="64" rx="14" fill={dark ? "#121212" : "#FBF9F5"} />
     <text
       x="30"
       y="45"
@@ -15,7 +15,7 @@ export const Logo = ({ size = 34, dark = true }) => (
       fontFamily="Archivo, sans-serif"
       fontWeight="900"
       fontSize="38"
-      fill={dark ? "#E8D8C4" : "#561C24"}
+      fill={dark ? "#FBF9F5" : "#121212"}
     >
       B
     </text>

@@ -45,7 +45,7 @@ const ItemList = ({ items, dark }) => (
         }`}
       >
         <p className="font-semibold text-sm">{item.title}</p>
-        <p className={`text-xs mt-0.5 ${dark ? "text-[#E8D8C4]/60" : "text-[#561C24]/60"}`}>
+        <p className={`text-xs mt-0.5 ${dark ? "text-[#E8D8C4]/60" : "text-[#121212]/60"}`}>
           {item.org}
         </p>
       </li>
@@ -61,7 +61,7 @@ const ChipList = ({ items, dark }) => (
         className={`rounded-full px-4 py-2 text-sm border ${
           dark
             ? "border-[#E8D8C4]/30 bg-[#E8D8C4]/10"
-            : "border-[#561C24]/20 bg-white/60"
+            : "border-[#121212]/20 bg-white/60"
         }`}
       >
         {s}
@@ -97,7 +97,7 @@ const FolderStack = () => {
             transition={{ type: "spring", stiffness: 320, damping: 30 }}
             className={`relative rounded-t-3xl ${
               isActive
-                ? "rounded-b-3xl z-10 shadow-[0_-14px_44px_rgba(86,28,36,0.18)]"
+                ? "rounded-b-3xl z-10 shadow-[0_-14px_44px_rgba(18,18,18,0.15)]"
                 : "cursor-pointer hover:-translate-y-1.5 transition-transform"
             }`}
             style={{
@@ -128,7 +128,7 @@ const FolderStack = () => {
 };
 
 export const AboutSection = () => (
-  <section id="sobre" className="py-24 sm:py-32 bg-[#C7B7A3]" data-testid="about-section">
+  <section id="sobre" className="py-24 sm:py-32 bg-[#F3F0EA]" data-testid="about-section">
     <div className="max-w-7xl mx-auto px-5 sm:px-8">
       <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
         <motion.div
@@ -138,7 +138,7 @@ export const AboutSection = () => (
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="relative"
         >
-          <div className="absolute -top-4 -left-4 w-full h-full rounded-3xl border border-[#561C24]/20" aria-hidden="true" />
+          <div className="absolute -top-4 -left-4 w-full h-full rounded-3xl border border-[#121212]/15" aria-hidden="true" />
           <div className="absolute -bottom-5 -right-5 w-24 h-24 bg-[#6D2932] rounded-2xl -z-0" aria-hidden="true" />
           <img
             src={PORTRAIT}
@@ -146,9 +146,9 @@ export const AboutSection = () => (
             data-testid="about-portrait"
             className="relative z-10 w-full aspect-[4/5] object-cover rounded-3xl"
           />
-          <div className="absolute z-20 bottom-6 left-6 bg-[#E8D8C4]/90 backdrop-blur-md rounded-2xl px-5 py-4">
-            <p className="font-serif font-bold text-xl text-[#561C24]">Ana Beatriz Assis</p>
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#561C24]/60 mt-0.5">
+          <div className="absolute z-20 bottom-6 left-6 bg-[#FBF9F5]/90 backdrop-blur-md rounded-2xl px-5 py-4">
+            <p className="font-serif font-bold text-xl text-[#121212]">Ana Beatriz Assis</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500 mt-0.5">
               Bia Assis® · Brand Designer
             </p>
           </div>
@@ -160,23 +160,23 @@ export const AboutSection = () => (
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-[#561C24]/60 mb-4 flex items-center gap-3">
-            <span className="w-8 h-px bg-[#561C24]" /> Sobre
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500 mb-4 flex items-center gap-3">
+            <span className="w-8 h-px bg-[#6D2932]" /> Sobre
           </p>
-          <h2 className="font-serif font-black tracking-tight text-4xl sm:text-5xl mb-6 text-[#561C24]">
+          <h2 className="font-serif font-black tracking-tight text-4xl sm:text-5xl mb-6 text-[#121212]">
             Menos ruído,
             <br />
             <em className="bg-[#E8D8C4] px-2 rounded-lg inline-block -rotate-1 not-italic font-script text-[#6D2932] text-5xl sm:text-6xl pr-3">
               mais essência.
             </em>
           </h2>
-          <p className="text-[#561C24]/75 leading-relaxed mb-4">
+          <p className="text-neutral-600 leading-relaxed mb-4">
             Sou a Bia — Ana Beatriz Assis — brand designer e diretora de arte
             com cerca de 9 anos de estrada. Especializada em branding e
             identidades visuais, meu foco é desenvolver marcas autênticas, que
             buscam seu propósito e sua voz no mundo.
           </p>
-          <p className="text-[#561C24]/75 leading-relaxed mb-10">
+          <p className="text-neutral-600 leading-relaxed mb-10">
             Minha paixão é criar soluções limpas e eficazes para mídia digital
             e impressa, sempre pensadas em quem está do outro lado. Formada em
             Design, com especialização em Branding pela agência Ana Couto e

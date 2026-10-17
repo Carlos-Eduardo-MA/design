@@ -16,13 +16,13 @@ export const EditorialMarquee = () => {
         <span key={t} className="flex items-center">
           <span
             className={`font-serif font-bold italic text-2xl sm:text-3xl px-6 ${
-              i % 2 ? "text-transparent" : "text-[#E8D8C4]"
+              i % 2 ? "text-transparent" : "text-[#FBF9F5]"
             }`}
-            style={i % 2 ? { WebkitTextStroke: "1.2px #E8D8C4" } : undefined}
+            style={i % 2 ? { WebkitTextStroke: "1.2px #FBF9F5" } : undefined}
           >
             {t}
           </span>
-          <span className="w-2 h-2 rounded-full bg-[#E8D8C4]" aria-hidden="true" />
+          <span className="w-2 h-2 rounded-full bg-[#FBF9F5]" aria-hidden="true" />
         </span>
       ))}
     </div>
@@ -30,7 +30,7 @@ export const EditorialMarquee = () => {
 
   return (
     <div
-      className="bg-[#561C24] py-5 overflow-hidden select-none"
+      className="bg-[#121212] py-5 overflow-hidden select-none"
       data-testid="editorial-marquee"
       aria-hidden="true"
     >
