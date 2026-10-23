@@ -56,7 +56,7 @@ const HeroCollage = () => (
     />
 
     <motion.img
-      src="/images/bia-cabeca.png"
+      src={`${process.env.PUBLIC_URL}/images/bia-cabeca.png`}
       alt="Ana Beatriz Assis de óculos escuros, adesivo"
       data-testid="hero-photo"
       animate={{ rotate: [-4, 4, -4] }}

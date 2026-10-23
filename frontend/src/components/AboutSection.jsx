@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const PORTRAIT = "/images/bia-notebook.png";
+const PORTRAIT = `${process.env.PUBLIC_URL}/images/bia-notebook.png`;
 
 const EXPERIENCE = [
   { title: "Diretora de Arte Sênior", org: "VCRP" },

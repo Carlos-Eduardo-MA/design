@@ -8,6 +8,8 @@ import Admin from "@/pages/Admin";
 import ProjectPage from "@/pages/ProjectPage";
 
 function App() {
+  const routerBasename = new URL(process.env.PUBLIC_URL, window.location.origin).pathname;
+
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
     let rafId;
@@ -24,7 +26,7 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename={routerBasename}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projeto/:id" element={<ProjectPage />} />
