@@ -152,7 +152,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
 
 @api_router.get("/")
 async def root():
-    return {"message": "Duarte Studio API"}
+    return {"message": "Bia Assis® API"}
 
 
 @api_router.post("/auth/login")
