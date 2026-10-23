@@ -42,10 +42,10 @@ export const ContactSection = () => {
             <h2 className="font-serif font-bold tracking-tight text-4xl sm:text-6xl mb-6">
               Tem uma marca
               <br />
-              pra <em className="bg-[#C7B7A3] px-2 rounded-lg inline-block -rotate-1">nascer?</em>
+              pra <em className="bg-[#561C24] text-white px-2 rounded-lg inline-block -rotate-1">nascer?</em>
             </h2>
             <p className="text-neutral-600 leading-relaxed max-w-md mb-10">
-              Me conta a ideia — pode ser rabiscada mesmo. Eu retorno com um
+              Me conta a ideia pode ser rabiscada mesmo. Eu retorno com um
               papo honesto sobre caminhos, prazos e investimento.
             </p>
             <div className="space-y-4">

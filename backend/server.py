@@ -7,20 +7,16 @@ load_dotenv(ROOT_DIR / ".env")
 import logging
 import os
 from datetime import datetime, timedelta, timezone
-from typing import Annotated, List, Optional
+from typing import List, Optional
+from uuid import uuid4
 
+import aiomysql
 import bcrypt
 import jwt
-from bson import ObjectId
 from fastapi import APIRouter, Depends, FastAPI, HTTPException, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from motor.motor_asyncio import AsyncIOMotorClient
-from pydantic import BaseModel, BeforeValidator, ConfigDict, EmailStr, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 from starlette.middleware.cors import CORSMiddleware
-
-mongo_url = os.environ["MONGO_URL"]
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ["DB_NAME"]]
 
 JWT_ALGORITHM = "HS256"
 
@@ -31,23 +27,13 @@ security = HTTPBearer(auto_error=False)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
-PyObjectId = Annotated[str, BeforeValidator(str)]
+pool: Optional[aiomysql.Pool] = None
 
 
-class BaseDocument(BaseModel):
-    model_config = ConfigDict(populate_by_name=True)
+class Project(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
 
-    id: Optional[PyObjectId] = Field(default=None, validation_alias="_id", serialization_alias="id")
-
-    def to_mongo(self) -> dict:
-        return self.model_dump(by_alias=True, exclude={"id"})
-
-    @classmethod
-    def from_mongo(cls, doc: dict):
-        return cls(**doc)
-
-
-class Project(BaseDocument):
+    id: str
     title: str
     category: str
     image_url: str
@@ -70,7 +56,10 @@ class ProjectCreate(BaseModel):
     ratio: str = "tall"
 
 
-class ContactMessage(BaseDocument):
+class ContactMessage(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
     name: str
     email: EmailStr
     message: str
@@ -106,6 +95,41 @@ def create_access_token(user_id: str, email: str) -> str:
     return jwt.encode(payload, os.environ["JWT_SECRET"], algorithm=JWT_ALGORITHM)
 
 
+def _with_utc_datetime(row: dict) -> dict:
+    result = dict(row)
+    created_at = result.get("created_at")
+    if created_at and created_at.tzinfo is None:
+        result["created_at"] = created_at.replace(tzinfo=timezone.utc)
+    return result
+
+
+async def fetch_one(query: str, params: tuple = ()) -> Optional[dict]:
+    if pool is None:
+        raise RuntimeError("A conexão com o MySQL ainda não foi inicializada.")
+    async with pool.acquire() as connection:
+        async with connection.cursor(aiomysql.DictCursor) as cursor:
+            await cursor.execute(query, params)
+            return await cursor.fetchone()
+
+
+async def fetch_all(query: str, params: tuple = ()) -> list:
+    if pool is None:
+        raise RuntimeError("A conexão com o MySQL ainda não foi inicializada.")
+    async with pool.acquire() as connection:
+        async with connection.cursor(aiomysql.DictCursor) as cursor:
+            await cursor.execute(query, params)
+            return await cursor.fetchall()
+
+
+async def execute(query: str, params: tuple = ()) -> int:
+    if pool is None:
+        raise RuntimeError("A conexão com o MySQL ainda não foi inicializada.")
+    async with pool.acquire() as connection:
+        async with connection.cursor() as cursor:
+            await cursor.execute(query, params)
+            return cursor.rowcount
+
+
 async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> dict:
     if not credentials:
         raise HTTPException(status_code=401, detail="Não autenticado")
@@ -117,10 +141,13 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
         raise HTTPException(status_code=401, detail="Token expirado")
     except jwt.InvalidTokenError:
         raise HTTPException(status_code=401, detail="Token inválido")
-    user = await db.users.find_one({"_id": ObjectId(payload["sub"])})
+    user = await fetch_one(
+        "SELECT id, email, name, role FROM users WHERE id = %s",
+        (payload.get("sub"),),
+    )
     if not user:
         raise HTTPException(status_code=401, detail="Usuário não encontrado")
-    return {"id": str(user["_id"]), "email": user["email"], "name": user.get("name", "Admin"), "role": user.get("role", "admin")}
+    return user
 
 
 @api_router.get("/")
@@ -131,26 +158,42 @@ async def root():
 @api_router.post("/auth/login")
 async def login(data: LoginInput, request: Request):
     email = data.email.lower().strip()
-    identifier = f"{request.client.host}:{email}"
-    attempts = await db.login_attempts.find_one({"identifier": identifier})
-    if attempts and attempts.get("count", 0) >= 5:
-        locked_until = attempts.get("locked_until")
-        if locked_until:
-            if locked_until.tzinfo is None:
-                locked_until = locked_until.replace(tzinfo=timezone.utc)
-            if locked_until > datetime.now(timezone.utc):
-                raise HTTPException(status_code=429, detail="Muitas tentativas. Tente novamente em 15 minutos.")
-    user = await db.users.find_one({"email": email})
+    client_host = request.client.host if request.client else "unknown"
+    identifier = f"{client_host}:{email}"
+    attempts = await fetch_one(
+        "SELECT attempt_count, locked_until FROM login_attempts WHERE identifier = %s",
+        (identifier,),
+    )
+    if attempts and attempts["attempt_count"] >= 5 and attempts["locked_until"]:
+        locked_until = attempts["locked_until"]
+        if locked_until.tzinfo is None:
+            locked_until = locked_until.replace(tzinfo=timezone.utc)
+        if locked_until > datetime.now(timezone.utc):
+            raise HTTPException(status_code=429, detail="Muitas tentativas. Tente novamente em 15 minutos.")
+
+    user = await fetch_one(
+        "SELECT id, email, name, role, password_hash FROM users WHERE email = %s",
+        (email,),
+    )
     if not user or not verify_password(data.password, user["password_hash"]):
-        await db.login_attempts.update_one(
-            {"identifier": identifier},
-            {"$inc": {"count": 1}, "$set": {"locked_until": datetime.now(timezone.utc) + timedelta(minutes=15)}},
-            upsert=True,
+        await execute(
+            """
+            INSERT INTO login_attempts (identifier, attempt_count, locked_until)
+            VALUES (%s, 1, %s)
+            ON DUPLICATE KEY UPDATE
+                attempt_count = attempt_count + 1,
+                locked_until = VALUES(locked_until)
+            """,
+            (identifier, datetime.now(timezone.utc).replace(tzinfo=None) + timedelta(minutes=15)),
         )
         raise HTTPException(status_code=401, detail="E-mail ou senha incorretos.")
-    await db.login_attempts.delete_one({"identifier": identifier})
-    token = create_access_token(str(user["_id"]), email)
-    return {"token": token, "user": {"email": email, "name": user.get("name", "Admin"), "role": user.get("role", "admin")}}
+
+    await execute("DELETE FROM login_attempts WHERE identifier = %s", (identifier,))
+    token = create_access_token(user["id"], email)
+    return {
+        "token": token,
+        "user": {"email": email, "name": user["name"], "role": user["role"]},
+    }
 
 
 @api_router.get("/auth/me")
@@ -160,57 +203,94 @@ async def me(user: dict = Depends(get_current_user)):
 
 @api_router.get("/projects", response_model=List[Project])
 async def list_projects():
-    docs = await db.projects.find().sort("created_at", -1).to_list(500)
-    return [Project.from_mongo(d) for d in docs]
+    docs = await fetch_all("SELECT * FROM projects ORDER BY created_at DESC LIMIT 500")
+    return [Project.model_validate(_with_utc_datetime(doc)) for doc in docs]
 
 
 @api_router.get("/projects/{project_id}", response_model=Project)
 async def get_project(project_id: str):
-    try:
-        doc = await db.projects.find_one({"_id": ObjectId(project_id)})
-    except Exception:
-        doc = None
+    doc = await fetch_one("SELECT * FROM projects WHERE id = %s", (project_id,))
     if not doc:
         raise HTTPException(status_code=404, detail="Projeto não encontrado")
-    return Project.from_mongo(doc)
+    return Project.model_validate(_with_utc_datetime(doc))
 
 
 @api_router.post("/projects", response_model=Project, status_code=201)
 async def create_project(data: ProjectCreate, user: dict = Depends(get_current_user)):
-    project = Project(**data.model_dump())
-    result = await db.projects.insert_one(project.to_mongo())
-    doc = await db.projects.find_one({"_id": result.inserted_id})
-    return Project.from_mongo(doc)
+    project_id = str(uuid4())
+    values = data.model_dump()
+    await execute(
+        """
+        INSERT INTO projects (id, title, category, image_url, behance_url, description, year, client, ratio)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """,
+        (
+            project_id,
+            values["title"],
+            values["category"],
+            values["image_url"],
+            values["behance_url"],
+            values["description"],
+            values["year"],
+            values["client"],
+            values["ratio"],
+        ),
+    )
+    doc = await fetch_one("SELECT * FROM projects WHERE id = %s", (project_id,))
+    return Project.model_validate(_with_utc_datetime(doc))
 
 
 @api_router.put("/projects/{project_id}", response_model=Project)
 async def update_project(project_id: str, data: ProjectCreate, user: dict = Depends(get_current_user)):
-    result = await db.projects.update_one({"_id": ObjectId(project_id)}, {"$set": data.model_dump()})
-    if result.matched_count == 0:
+    existing = await fetch_one("SELECT id FROM projects WHERE id = %s", (project_id,))
+    if not existing:
         raise HTTPException(status_code=404, detail="Projeto não encontrado")
-    doc = await db.projects.find_one({"_id": ObjectId(project_id)})
-    return Project.from_mongo(doc)
+    values = data.model_dump()
+    await execute(
+        """
+        UPDATE projects
+        SET title = %s, category = %s, image_url = %s, behance_url = %s,
+            description = %s, year = %s, client = %s, ratio = %s
+        WHERE id = %s
+        """,
+        (
+            values["title"],
+            values["category"],
+            values["image_url"],
+            values["behance_url"],
+            values["description"],
+            values["year"],
+            values["client"],
+            values["ratio"],
+            project_id,
+        ),
+    )
+    doc = await fetch_one("SELECT * FROM projects WHERE id = %s", (project_id,))
+    return Project.model_validate(_with_utc_datetime(doc))
 
 
 @api_router.delete("/projects/{project_id}", status_code=204)
 async def delete_project(project_id: str, user: dict = Depends(get_current_user)):
-    result = await db.projects.delete_one({"_id": ObjectId(project_id)})
-    if result.deleted_count == 0:
+    deleted = await execute("DELETE FROM projects WHERE id = %s", (project_id,))
+    if deleted == 0:
         raise HTTPException(status_code=404, detail="Projeto não encontrado")
 
 
 @api_router.post("/contact", response_model=ContactMessage, status_code=201)
 async def create_contact(data: ContactCreate):
-    message = ContactMessage(**data.model_dump())
-    result = await db.contact_messages.insert_one(message.to_mongo())
-    doc = await db.contact_messages.find_one({"_id": result.inserted_id})
-    return ContactMessage.from_mongo(doc)
+    message_id = str(uuid4())
+    await execute(
+        "INSERT INTO contact_messages (id, name, email, message) VALUES (%s, %s, %s, %s)",
+        (message_id, data.name, str(data.email), data.message),
+    )
+    doc = await fetch_one("SELECT * FROM contact_messages WHERE id = %s", (message_id,))
+    return ContactMessage.model_validate(_with_utc_datetime(doc))
 
 
 @api_router.get("/messages", response_model=List[ContactMessage])
 async def list_messages(user: dict = Depends(get_current_user)):
-    docs = await db.contact_messages.find().sort("created_at", -1).to_list(500)
-    return [ContactMessage.from_mongo(d) for d in docs]
+    docs = await fetch_all("SELECT * FROM contact_messages ORDER BY created_at DESC LIMIT 500")
+    return [ContactMessage.model_validate(_with_utc_datetime(doc)) for doc in docs]
 
 
 SEED_PROJECTS = [
@@ -229,29 +309,107 @@ SEED_PROJECTS = [
 async def seed_admin():
     admin_email = os.environ.get("ADMIN_EMAIL", "admin@example.com").lower()
     admin_password = os.environ.get("ADMIN_PASSWORD", "admin123")
-    existing = await db.users.find_one({"email": admin_email})
+    existing = await fetch_one("SELECT id, password_hash FROM users WHERE email = %s", (admin_email,))
     if existing is None:
-        await db.users.insert_one({
-            "email": admin_email,
-            "password_hash": hash_password(admin_password),
-            "name": "Ana Beatriz Assis",
-            "role": "admin",
-            "created_at": datetime.now(timezone.utc),
-        })
+        await execute(
+            "INSERT INTO users (id, email, password_hash, name, role) VALUES (%s, %s, %s, %s, %s)",
+            (str(uuid4()), admin_email, hash_password(admin_password), "Ana Beatriz Assis", "admin"),
+        )
         logger.info("Admin seedado: %s", admin_email)
     elif not verify_password(admin_password, existing["password_hash"]):
-        await db.users.update_one({"email": admin_email}, {"$set": {"password_hash": hash_password(admin_password)}})
+        await execute(
+            "UPDATE users SET password_hash = %s WHERE email = %s",
+            (hash_password(admin_password), admin_email),
+        )
         logger.info("Senha do admin atualizada a partir do .env")
 
 
 @app.on_event("startup")
 async def startup():
-    await db.users.create_index("email", unique=True)
-    await db.login_attempts.create_index("identifier")
+    global pool
+    pool = await aiomysql.create_pool(
+        host=os.environ.get("MYSQL_HOST", "127.0.0.1"),
+        port=int(os.environ.get("MYSQL_PORT", "3306")),
+        user=os.environ.get("MYSQL_USER", "root"),
+        password=os.environ.get("MYSQL_PASSWORD", ""),
+        db=os.environ["DB_NAME"],
+        minsize=1,
+        maxsize=10,
+        autocommit=True,
+        charset="utf8mb4",
+        init_command="SET time_zone = '+00:00'",
+    )
+
+    schema = [
+        """
+        CREATE TABLE IF NOT EXISTS users (
+            id CHAR(36) PRIMARY KEY,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            password_hash VARCHAR(255) NOT NULL,
+            name VARCHAR(120) NOT NULL,
+            role VARCHAR(50) NOT NULL DEFAULT 'admin',
+            created_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS projects (
+            id CHAR(36) PRIMARY KEY,
+            title TEXT NOT NULL,
+            category TEXT NOT NULL,
+            image_url TEXT NOT NULL,
+            behance_url TEXT NOT NULL DEFAULT 'https://behance.net',
+            description TEXT NOT NULL,
+            year VARCHAR(20) NOT NULL DEFAULT '',
+            client TEXT NOT NULL,
+            ratio VARCHAR(20) NOT NULL DEFAULT 'tall',
+            created_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+            INDEX idx_projects_created_at (created_at)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS contact_messages (
+            id CHAR(36) PRIMARY KEY,
+            name VARCHAR(120) NOT NULL,
+            email VARCHAR(320) NOT NULL,
+            message TEXT NOT NULL,
+            created_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+            INDEX idx_contact_messages_created_at (created_at)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS login_attempts (
+            identifier VARCHAR(320) PRIMARY KEY,
+            attempt_count INT NOT NULL DEFAULT 0,
+            locked_until DATETIME(6) NULL
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+        """,
+    ]
+    for statement in schema:
+        await execute(statement)
+
     await seed_admin()
-    if await db.projects.count_documents({}) == 0:
-        for p in SEED_PROJECTS:
-            await db.projects.insert_one(Project(**p).to_mongo())
+    project_count = await fetch_one("SELECT COUNT(*) AS total FROM projects")
+    if project_count["total"] == 0:
+        for project in SEED_PROJECTS:
+            values = ProjectCreate(**project).model_dump()
+            await execute(
+                """
+                INSERT INTO projects
+                    (id, title, category, image_url, behance_url, description, year, client, ratio)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                """,
+                (
+                    str(uuid4()),
+                    values["title"],
+                    values["category"],
+                    values["image_url"],
+                    values["behance_url"],
+                    values["description"],
+                    values["year"],
+                    values["client"],
+                    values["ratio"],
+                ),
+            )
         logger.info("Projetos iniciais seedados")
 
 
@@ -268,4 +426,8 @@ app.add_middleware(
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    client.close()
+    global pool
+    if pool is not None:
+        pool.close()
+        await pool.wait_closed()
+        pool = None

@@ -10,10 +10,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['Archivo', '-apple-system', 'sans-serif'],
-        script: ['Caveat', 'cursive'],
-        sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        serif: ['"Inter Tight"', '-apple-system', 'sans-serif'],
+        script: ['"Inter Tight"', '-apple-system', 'sans-serif'],
+        sans: ['Inter', '-apple-system', 'sans-serif'],
+        mono: ['Inter', '-apple-system', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',

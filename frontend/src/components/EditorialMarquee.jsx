@@ -2,7 +2,6 @@ const TERMS = [
   "Branding",
   "Identidade Visual",
   "Estratégia de Marca",
-  "Naming",
   "Editorial",
   "Packaging",
   "Posicionamento",
@@ -28,6 +27,13 @@ export const EditorialMarquee = () => {
     </div>
   );
 
+  const group = (key) => (
+    <div className="flex shrink-0" key={key}>
+      {row}
+      {row}
+    </div>
+  );
+
   return (
     <div
       className="bg-[#121212] py-5 overflow-hidden select-none"
@@ -35,8 +41,8 @@ export const EditorialMarquee = () => {
       aria-hidden="true"
     >
       <div className="flex w-max animate-marquee">
-        {row}
-        {row}
+        {group("marquee-group-1")}
+        {group("marquee-group-2")}
       </div>
     </div>
   );

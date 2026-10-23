@@ -3,15 +3,14 @@ import { ArrowDown } from "lucide-react";
 import { WHATSAPP_URL } from "@/config";
 
 const STATS = [
-  { value: "9+", label: "anos de experiência" },
+  { value: "10+", label: "anos de experiência" },
   { value: "Branding", label: "especialização · Agência Ana Couto" },
   { value: "∞", label: "ideias com propósito" },
 ];
 
 const PILLS = [
   { text: "branding", bg: "#C7B7A3", color: "#561C24", pos: { top: "2%", left: "-2%" }, delay: 0, testid: "hero-pill-branding" },
-  { text: "identidade visual", bg: "#FBF9F5", color: "#121212", border: true, pos: { top: "38%", right: "-4%" }, delay: 0.9, testid: "hero-pill-identidade" },
-  { text: "naming", bg: "#E8D8C4", color: "#561C24", border: true, pos: { bottom: "26%", left: "-4%" }, delay: 1.8, testid: "hero-pill-naming" },
+  { text: "identidade visual", bg: "#FBF9F5", color: "#121212", border: true, pos: { top: "38%", right: "-20%" }, delay: 0.9, testid: "hero-pill-identidade" },
   { text: "direção de arte", bg: "#561C24", color: "#E8D8C4", pos: { bottom: "3%", right: "4%" }, delay: 2.7, testid: "hero-pill-direcao" },
 ];
 
@@ -203,8 +202,8 @@ export const HeroSection = () => (
           className="mt-12 max-w-xl text-base sm:text-lg leading-relaxed text-neutral-600"
           data-testid="hero-subtitle"
         >
-          Branding, identidade visual, naming e editorial para negócios que
-          querem ser lembrados — não apenas vistos. Menos ruído, mais essência.
+          Branding, identidade visual e editorial para negócios que
+          querem ser lembrados não apenas vistos. Menos ruído, mais essência.
         </motion.p>
 
         <motion.div

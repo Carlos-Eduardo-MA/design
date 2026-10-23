@@ -171,8 +171,8 @@ export const AboutSection = () => (
             </em>
           </h2>
           <p className="text-neutral-600 leading-relaxed mb-4">
-            Sou a Bia — Ana Beatriz Assis — brand designer e diretora de arte
-            com cerca de 9 anos de estrada. Especializada em branding e
+            Sou a Bia, brand designer e diretora de arte
+            com cerca de 10 anos de estrada. Especializada em branding e
             identidades visuais, meu foco é desenvolver marcas autênticas, que
             buscam seu propósito e sua voz no mundo.
           </p>
@@ -180,7 +180,7 @@ export const AboutSection = () => (
             Minha paixão é criar soluções limpas e eficazes para mídia digital
             e impressa, sempre pensadas em quem está do outro lado. Formada em
             Design, com especialização em Branding pela agência Ana Couto e
-            passagens por agências como VCRP, Mediccont e Myne — sempre
+            passagens por agências como VCRP, Mediccont e Myne sempre
             aprendendo para fazer a diferença em cada projeto.
           </p>
 
