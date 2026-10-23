@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { LogOut, Plus, Trash2, Mail, Loader2, ArrowLeft } from "lucide-react";
 import { Logo } from "@/components/Logo";
-import { API, ADMIN_TOKEN_KEY } from "@/config";
+import { API, ADMIN_TOKEN_KEY, getProjectImageUrl } from "@/config";
 
 const emptyForm = {
   title: "",
@@ -20,7 +20,7 @@ const field =
   "w-full bg-white border border-[rgba(18,18,18,0.12)] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#121212] transition-colors placeholder:text-neutral-400";
 
 export default function Admin() {
-  const [token, setToken] = useState(() => localStorage.getItem(ADMIN_TOKEN_KEY) || "");
+  const [token, setToken] = useState("");
   const [loginForm, setLoginForm] = useState({ email: "", password: "" });
   const [loginError, setLoginError] = useState("");
   const [loggingIn, setLoggingIn] = useState(false);
@@ -60,7 +60,6 @@ export default function Admin() {
     setLoginError("");
     try {
       const { data } = await axios.post(`${API}/auth/login`, loginForm);
-      localStorage.setItem(ADMIN_TOKEN_KEY, data.token);
       setToken(data.token);
       toast.success(`Bem-vinda, ${data.user.name}!`);
     } catch (err) {
@@ -85,6 +84,11 @@ export default function Admin() {
       setForm(emptyForm);
       loadData();
     } catch (err) {
+      if (err.response?.status === 401) {
+        localStorage.removeItem(ADMIN_TOKEN_KEY);
+        setToken("");
+        return;
+      }
       toast.error("Não foi possível salvar o projeto.");
     } finally {
       setSaving(false);
@@ -97,6 +101,11 @@ export default function Admin() {
       toast.success("Projeto removido.");
       setProjects((prev) => prev.filter((p) => p.id !== id));
     } catch (err) {
+      if (err.response?.status === 401) {
+        localStorage.removeItem(ADMIN_TOKEN_KEY);
+        setToken("");
+        return;
+      }
       toast.error("Não foi possível remover.");
     }
   };
@@ -284,7 +293,7 @@ export default function Admin() {
                 data-testid={`admin-project-${p.id}`}
               >
                 <div className="aspect-[16/10] bg-[#FBF9F5] overflow-hidden">
-                  <img src={p.image_url} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
+                  <img src={getProjectImageUrl(p.image_url)} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <div className="p-4 flex items-start justify-between gap-3">
                   <div>

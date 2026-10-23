@@ -5,7 +5,7 @@ import axios from "axios";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
-import { API, WHATSAPP_URL } from "@/config";
+import { API, getProjectImageUrl, WHATSAPP_URL } from "@/config";
 
 export default function ProjectPage() {
   const { id } = useParams();
@@ -131,7 +131,7 @@ export default function ProjectPage() {
               className="rounded-3xl overflow-hidden bg-[#FBF9F5] mb-14"
             >
               <img
-                src={project.image_url}
+                src={getProjectImageUrl(project.image_url)}
                 alt={project.title}
                 data-testid="project-image"
                 className="w-full max-h-[78vh] object-cover"

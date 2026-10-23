@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import { Toaster } from "sonner";
 import "@/App.css";
+import { ADMIN_TOKEN_KEY } from "@/config";
 import Home from "@/pages/Home";
 import Admin from "@/pages/Admin";
 import ProjectPage from "@/pages/ProjectPage";
@@ -11,6 +12,7 @@ function App() {
   const routerBasename = new URL(process.env.PUBLIC_URL, window.location.origin).pathname;
 
   useEffect(() => {
+    window.localStorage.removeItem(ADMIN_TOKEN_KEY);
     const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
     let rafId;
     const raf = (time) => {

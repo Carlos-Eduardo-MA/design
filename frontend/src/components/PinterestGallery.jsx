@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { Search, Heart, ArrowUpRight } from "lucide-react";
-import { API } from "@/config";
+import { API, getProjectImageUrl } from "@/config";
 
 const RATIO_CLASS = {
   tall: "aspect-[4/5]",
@@ -154,7 +154,7 @@ export const PinterestGallery = () => {
                   }`}
                 >
                   <img
-                    src={p.image_url}
+                    src={getProjectImageUrl(p.image_url)}
                     alt={p.title}
                     loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"

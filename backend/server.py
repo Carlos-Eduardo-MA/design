@@ -8,6 +8,7 @@ import logging
 import os
 from datetime import datetime, timedelta, timezone
 from typing import List, Optional
+from urllib.parse import urlsplit
 from uuid import uuid4
 
 import aiomysql
@@ -19,6 +20,55 @@ from pydantic import BaseModel, ConfigDict, EmailStr, Field
 from starlette.middleware.cors import CORSMiddleware
 
 JWT_ALGORITHM = "HS256"
+DEFAULT_CORS_ORIGINS = (
+    "https://carlos-eduardo-ma.github.io",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+)
+
+
+def get_cors_origins() -> list[str]:
+    configured = os.environ.get("CORS_ORIGINS")
+    origins = [origin.strip() for origin in configured.split(",")] if configured else list(DEFAULT_CORS_ORIGINS)
+    if not origins or any(not origin or origin == "*" for origin in origins):
+        raise RuntimeError("CORS_ORIGINS deve conter origens explícitas; curingas não são permitidos.")
+
+    for origin in origins:
+        parsed = urlsplit(origin)
+        local_http = parsed.scheme == "http" and parsed.hostname in {"localhost", "127.0.0.1"}
+        if (
+            parsed.scheme not in {"http", "https"}
+            or not parsed.netloc
+            or (parsed.scheme != "https" and not local_http)
+            or parsed.path
+            or parsed.query
+            or parsed.fragment
+        ):
+            raise RuntimeError(f"Origem CORS inválida: {origin}")
+    return origins
+
+
+def required_setting(name: str) -> str:
+    value = os.environ.get(name, "").strip()
+    if not value:
+        raise RuntimeError(f"A variável de ambiente {name} é obrigatória.")
+    return value
+
+
+def validate_security_settings() -> None:
+    jwt_secret = required_setting("JWT_SECRET")
+    if len(jwt_secret) < 32:
+        raise RuntimeError("JWT_SECRET deve conter pelo menos 32 caracteres aleatórios.")
+
+    required_setting("ADMIN_EMAIL")
+    admin_password = required_setting("ADMIN_PASSWORD")
+    if len(admin_password) < 16:
+        raise RuntimeError("ADMIN_PASSWORD deve conter pelo menos 16 caracteres.")
+
+    required_setting("MYSQL_USER")
+    required_setting("MYSQL_PASSWORD")
+    required_setting("DB_NAME")
+
 
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
@@ -89,7 +139,7 @@ def create_access_token(user_id: str, email: str) -> str:
     payload = {
         "sub": user_id,
         "email": email,
-        "exp": datetime.now(timezone.utc) + timedelta(hours=12),
+        "exp": datetime.now(timezone.utc) + timedelta(minutes=30),
         "type": "access",
     }
     return jwt.encode(payload, os.environ["JWT_SECRET"], algorithm=JWT_ALGORITHM)
@@ -147,6 +197,8 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
     )
     if not user:
         raise HTTPException(status_code=401, detail="Usuário não encontrado")
+    if user["role"] != "admin":
+        raise HTTPException(status_code=403, detail="Acesso restrito ao administrador")
     return user
 
 
@@ -307,8 +359,8 @@ SEED_PROJECTS = [
 
 
 async def seed_admin():
-    admin_email = os.environ.get("ADMIN_EMAIL", "admin@example.com").lower()
-    admin_password = os.environ.get("ADMIN_PASSWORD", "admin123")
+    admin_email = required_setting("ADMIN_EMAIL").lower()
+    admin_password = required_setting("ADMIN_PASSWORD")
     existing = await fetch_one("SELECT id, password_hash FROM users WHERE email = %s", (admin_email,))
     if existing is None:
         await execute(
@@ -322,15 +374,20 @@ async def seed_admin():
             (hash_password(admin_password), admin_email),
         )
         logger.info("Senha do admin atualizada a partir do .env")
+    await execute(
+        "DELETE FROM users WHERE email = %s AND email <> %s",
+        ("admin@example.com", admin_email),
+    )
 
 
 @app.on_event("startup")
 async def startup():
     global pool
+    validate_security_settings()
     pool = await aiomysql.create_pool(
         host=os.environ.get("MYSQL_HOST", "127.0.0.1"),
         port=int(os.environ.get("MYSQL_PORT", "3306")),
-        user=os.environ.get("MYSQL_USER", "root"),
+        user=required_setting("MYSQL_USER"),
         password=os.environ.get("MYSQL_PASSWORD", ""),
         db=os.environ["DB_NAME"],
         minsize=1,
@@ -418,9 +475,9 @@ app.include_router(api_router)
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=False,
-    allow_origins=os.environ.get("CORS_ORIGINS", "*").split(","),
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=get_cors_origins(),
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["Authorization", "Content-Type"],
 )
 
 

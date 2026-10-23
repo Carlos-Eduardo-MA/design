@@ -73,8 +73,8 @@ const ChipList = ({ items, dark }) => (
 const FOLDERS = [
   { id: "experiencia", label: "Experiência", bg: "#C7B7A3", dark: false, tabLeft: "6%", content: <ItemList items={EXPERIENCE} /> },
   { id: "formacao", label: "Formação", bg: "#E8D8C4", dark: false, tabLeft: "30%", content: <ItemList items={CERTIFICATES} /> },
-  { id: "especializacoes", label: "Especializações", bg: "#6D2932", dark: true, tabLeft: "52%", content: <ChipList items={SPECIALIZATIONS} dark /> },
-  { id: "ferramentas", label: "Ferramentas", bg: "#561C24", dark: true, tabLeft: "74%", content: <ItemList items={TOOLS} dark /> },
+  { id: "especializacoes", label: "Especializações", bg: "#6D2932", dark: true, tabLeft: "52%", mobileTabClass: "max-sm:!left-[48%]", content: <ChipList items={SPECIALIZATIONS} dark /> },
+  { id: "ferramentas", label: "Ferramentas", bg: "#561C24", dark: true, tabLeft: "70%", mobileTabClass: "max-sm:!left-[56%]", content: <ItemList items={TOOLS} dark /> },
 ];
 
 const FolderStack = () => {
@@ -108,7 +108,7 @@ const FolderStack = () => {
             }}
           >
             <span
-              className="absolute -top-8 h-8 px-5 rounded-t-2xl flex items-center font-mono text-[10px] uppercase tracking-[0.2em]"
+              className={`absolute -top-8 h-8 px-5 rounded-t-2xl flex items-center font-mono text-[10px] uppercase tracking-[0.2em] ${f.mobileTabClass || ""}`}
               style={{ backgroundColor: f.bg, left: f.tabLeft }}
             >
               {f.label}
