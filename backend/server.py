@@ -357,7 +357,7 @@ async def startup():
             title TEXT NOT NULL,
             category TEXT NOT NULL,
             image_url TEXT NOT NULL,
-            behance_url TEXT NOT NULL DEFAULT 'https://behance.net',
+            behance_url VARCHAR(500) NOT NULL DEFAULT 'https://behance.net',
             description TEXT NOT NULL,
             year VARCHAR(20) NOT NULL DEFAULT '',
             client TEXT NOT NULL,
