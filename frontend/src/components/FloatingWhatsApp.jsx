@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { WHATSAPP_URL } from "@/config";
+import { useWhatsAppInquiry } from "@/components/WhatsAppInquiry";
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6" aria-hidden="true">
@@ -7,21 +7,24 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-export const FloatingWhatsApp = () => (
-  <motion.a
-    href={WHATSAPP_URL}
-    target="_blank"
-    rel="noopener noreferrer"
-    initial={{ opacity: 0, scale: 0, y: 20 }}
-    animate={{ opacity: 1, scale: 1, y: 0 }}
-    transition={{ delay: 2, type: "spring", stiffness: 260, damping: 18 }}
-    whileHover={{ scale: 1.1 }}
-    whileTap={{ scale: 0.92 }}
-    data-testid="whatsapp-floating-btn"
-    aria-label="Conversar no WhatsApp"
-    className="fixed bottom-6 right-6 z-[65] w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-[0_8px_30px_rgba(37,211,102,0.4)]"
-  >
-    <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20" aria-hidden="true" />
-    <WhatsAppIcon />
-  </motion.a>
-);
+export const FloatingWhatsApp = () => {
+  const { openInquiry } = useWhatsAppInquiry();
+
+  return (
+    <motion.button
+      type="button"
+      onClick={openInquiry}
+      initial={{ opacity: 0, scale: 0, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ delay: 2, type: "spring", stiffness: 260, damping: 18 }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.92 }}
+      data-testid="whatsapp-floating-btn"
+      aria-label="Conversar no WhatsApp"
+      className="fixed bottom-6 right-6 z-[65] w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-[0_8px_30px_rgba(37,211,102,0.4)]"
+    >
+      <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20" aria-hidden="true" />
+      <WhatsAppIcon />
+    </motion.button>
+  );
+};

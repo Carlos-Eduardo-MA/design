@@ -1,1 +1,10 @@
 /* Estilos globais ficam em index.css */
+
+.whatsapp-inquiry-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.whatsapp-inquiry-scroll::-webkit-scrollbar {
+  display: none;
+}

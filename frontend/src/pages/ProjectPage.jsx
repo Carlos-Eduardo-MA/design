@@ -5,10 +5,12 @@ import axios from "axios";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
-import { API, getProjectImageUrl, WHATSAPP_URL } from "@/config";
+import { API, getProjectImageUrl } from "@/config";
+import { useWhatsAppInquiry } from "@/components/WhatsAppInquiry";
 
 export default function ProjectPage() {
   const { id } = useParams();
+  const { openInquiry } = useWhatsAppInquiry();
   const [project, setProject] = useState(null);
   const [all, setAll] = useState([]);
   const [status, setStatus] = useState("loading");
@@ -161,16 +163,15 @@ export default function ProjectPage() {
               <h2 className="font-serif text-3xl sm:text-4xl max-w-md">
                 Gostou? Sua marca pode ser a <em className="underline decoration-2 underline-offset-8">próxima.</em>
               </h2>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={openInquiry}
                 data-testid="project-cta-whatsapp"
                 className="shrink-0 bg-[#FBF9F5] text-[#121212] px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.2em] hover:bg-[#25D366] hover:text-white transition-colors duration-300 flex items-center gap-3 w-fit"
               >
                 Chamar no WhatsApp
                 <span className="w-1.5 h-1.5 rounded-full bg-[#25D366]" />
-              </a>
+              </button>
             </div>
           </section>
 

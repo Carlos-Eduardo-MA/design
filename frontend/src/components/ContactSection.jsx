@@ -2,10 +2,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { toast } from "sonner";
-import { Mail, MapPin, Send, Loader2 } from "lucide-react";
+import { Mail, MapPin, Send, Loader2, MessageCircle } from "lucide-react";
 import { API } from "@/config";
+import { useWhatsAppInquiry } from "@/components/WhatsAppInquiry";
 
 export const ContactSection = () => {
+  const { openInquiry } = useWhatsAppInquiry();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
 
@@ -48,6 +50,14 @@ export const ContactSection = () => {
               Me conta a ideia pode ser rabiscada mesmo. Eu retorno com um
               papo honesto sobre caminhos, prazos e investimento.
             </p>
+            <button
+              type="button"
+              onClick={openInquiry}
+              data-testid="contact-whatsapp-button"
+              className="mb-10 inline-flex items-center gap-3 rounded-full bg-[#561C24] px-6 py-3.5 font-mono text-xs uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#6D2932]"
+            >
+              <MessageCircle size={16} /> Começar briefing pelo WhatsApp
+            </button>
             <div className="space-y-4">
               <a
                 href="mailto:abiadesigner@gmail.com"
@@ -142,7 +152,7 @@ export const ContactSection = () => {
                 </>
               ) : (
                 <>
-                  Enviar mensagem <Send size={14} />
+                  Enviar e-mail <Send size={14} />
                 </>
               )}
             </button>

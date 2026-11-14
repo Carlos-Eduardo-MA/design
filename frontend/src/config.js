@@ -8,8 +8,9 @@ export const getProjectImageUrl = (imageUrl) =>
 
 export const ADMIN_TOKEN_KEY = "bia_admin_token";
 
+export const WHATSAPP_NUMBER = "5524999998186";
 export const WHATSAPP_URL =
-  "https://wa.me/5524999998186?text=" +
+  `https://wa.me/${WHATSAPP_NUMBER}?text=` +
   encodeURIComponent(
     "Olá, Bia! Vim pelo seu site e gostaria de conversar sobre um projeto de branding."
   );

@@ -7,6 +7,7 @@ import { ADMIN_TOKEN_KEY } from "@/config";
 import Home from "@/pages/Home";
 import Admin from "@/pages/Admin";
 import ProjectPage from "@/pages/ProjectPage";
+import { WhatsAppInquiryProvider } from "@/components/WhatsAppInquiry";
 
 function App() {
   const routerBasename = new URL(process.env.PUBLIC_URL, window.location.origin).pathname;
@@ -29,11 +30,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter basename={routerBasename}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projeto/:id" element={<ProjectPage />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
+        <WhatsAppInquiryProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projeto/:id" element={<ProjectPage />} />
+            <Route path="/admin" element={<Admin />} />
+          </Routes>
+        </WhatsAppInquiryProvider>
       </BrowserRouter>
       <Toaster position="bottom-left" richColors />
     </div>

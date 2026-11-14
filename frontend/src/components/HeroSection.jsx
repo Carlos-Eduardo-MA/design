@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import { WHATSAPP_URL } from "@/config";
+import { useWhatsAppInquiry } from "@/components/WhatsAppInquiry";
 
 const STATS = [
   { value: "10+", label: "anos de experiência" },
@@ -133,8 +133,11 @@ const HeroCollage = () => (
   </motion.div>
 );
 
-export const HeroSection = () => (
-  <section
+export const HeroSection = () => {
+  const { openInquiry } = useWhatsAppInquiry();
+
+  return (
+    <section
     id="inicio"
     className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-20"
     data-testid="hero-section"
@@ -212,16 +215,15 @@ export const HeroSection = () => (
           transition={{ delay: 1.15, duration: 0.7 }}
           className="mt-10 flex flex-wrap items-center gap-4"
         >
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={openInquiry}
             data-testid="hero-cta-whatsapp"
             className="group bg-[#121212] text-[#FBF9F5] px-7 py-3.5 rounded-full font-mono text-xs uppercase tracking-[0.2em] border border-[#121212] hover:bg-transparent hover:text-[#121212] transition-colors duration-300 flex items-center gap-3"
           >
             Chamar no WhatsApp
             <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] group-hover:scale-150 transition-transform" />
-          </a>
+          </button>
           <a
             href="#portfolio"
             data-testid="hero-cta-portfolio"
@@ -263,5 +265,6 @@ export const HeroSection = () => (
     >
       <ArrowDown size={20} className="animate-bounce" />
     </motion.a>
-  </section>
-);
+    </section>
+  );
+};
